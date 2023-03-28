@@ -1,0 +1,15 @@
+{
+  "env": { "browser": true, "es6": true },
+  "extends": ["standard", "standard-jsx", "plugin:css-modules/recommended", "prettier"],
+  "parser": "@babel/eslint-parser",
+  "parserOptions": { "allowImportExportEverywhere": true },
+  "plugins": ["css-modules"],
+  "rules": {
+    "css-modules/no-undef-class": [1, { "camelCase": true }],
+    "css-modules/no-unused-class": [1, { "camelCase": true }],
+    "no-func-assign": "off",
+    "no-proto": "off",
+    "strict": 0,
+    "react/no-children-prop": [1, { "allowFunctions": true }]
+  }
+}
