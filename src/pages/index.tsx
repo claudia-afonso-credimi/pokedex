@@ -1,25 +1,22 @@
 import * as React from 'react'
 import { MdCatchingPokemon } from "react-icons/md"
+import { BiSearchAlt } from "react-icons/bi"
 import Input from '../components/input/input'
-import { EmptyLayout } from '../layout/layout'
+import { Layout } from '../layout/layout'
 import * as style from './style/index.module.scss'
 
 const HomePage = () => {
   return (
-    <EmptyLayout>
-      <div>
-        <p>Welcome to</p>
-        <h1 className={style.title}>Pokédex</h1>
+    <Layout>
+      <>
+        <p className={style.overTitle}>Welcome to Pokédex</p>
+        <h1 className={style.title}>What Pokémon are you looking for?</h1>
         {/* <MdCatchingPokemon color={'yellow'} /> */}
         <div>
-          <Input />
-          <div>
-            <button>Show all</button>
-            <button>Surprise Me</button>
-          </div>
+        <Input icon={BiSearchAlt} />
         </div>
-      </div>
-    </EmptyLayout>
+      </>
+    </Layout>
 
   )
 }

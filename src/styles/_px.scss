@@ -2,15 +2,23 @@
 
 $base-font-size: 16;
 
+/// Converts pixel to rem values
+/// @param {Number} $values - Number whe want to convert
+/// @param {Number} $base-value - body font-size, by default -> $base-font-size: 16;
+/// @return {Number} - number
+
 @function convert-to-rem($value, $base-value: $base-font-size) {
   $value: calc($value / $base-value * 1rem);
-
-  // @if (quote($value) == '0rem') { $value: 0; } // Turn 0rem into 0
 
   @return $value;
 }
 
-@function px-rem($values, $base-value: $base-font-size) {
+/// Returns a list of pixel values converted to rem
+/// @param {Number} $values - Number whe want to convert
+/// @param {Number} $base-value - body font-size, by default -> $base-font-size: 16;
+/// @return {Number} - number
+
+@function rem($values, $base-value: $base-font-size) {
   $max: list.length($values);
 
   @if $max == 1 {

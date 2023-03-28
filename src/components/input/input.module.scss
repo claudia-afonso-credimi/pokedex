@@ -1,19 +1,36 @@
 .input {
-  border: px-rem(2) solid $color-neutral;
-  border-radius: px-rem(20);
+  border: rem(2) solid $color-neutral;
+  border-radius: rem(20);
   box-shadow: unset;
   color: $color-dark;
   display: block;
+  font-size: rem(16);
   margin-bottom: $spacing-sm;
-  min-width: px-rem(250);
-  padding: px-rem(10 14);
-  width: 100%;
+  padding: rem(10 14);
 
   &::placeholder {
-    color: $color-neutral;
+    color: $color-neutral-light;
   }
 
   &:focus-visible {
     outline-color: $color-primary-light;
+  }
+}
+
+.inputWrapper {
+  position: relative;
+
+  .inputIcon {
+    position: absolute;
+    left: rem(16);
+    top: rem(12);
+    bottom: 0;
+    color: $color-neutral;
+    width: rem(16);
+    height: rem(16);
+  }
+
+  .input {
+    padding-left: rem(40);
   }
 }

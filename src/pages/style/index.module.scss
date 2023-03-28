@@ -4,3 +4,22 @@
   margin-bottom: $spacing-xs;
   color: $color-primary;
 }
+
+.overTitle {
+  @extend %small;
+
+  color: $color-secondary;
+  position: relative;
+  margin-bottom: $spacing-xs;
+
+  &::after {
+    content: '';
+    width: 10%;
+    position: absolute;
+    bottom: -8px;
+    background-color: red;
+    right: 0;
+    height: 2px;
+    left: 0;
+  }
+}
