@@ -1,10 +1,16 @@
 import * as React from 'react'
 import { Link } from 'gatsby'
+import { useStaticQuery, graphql } from "gatsby"
+import { FormattedMessage, IntlProvider } from "react-intl"
+import "@formatjs/intl-pluralrules/polyfill"
+import { getCurrentLangKey } from 'ptz-i18n'
 import { MdCatchingPokemon } from "react-icons/md"
 import * as style from './layout.module.scss'
 
 type LayoutProps = {
   children: React.ReactElement
+  location: any
+  messages: any
 }
 
 const NavBar = () => {
@@ -19,33 +25,37 @@ const NavBar = () => {
   )
 }
 
-// const Layout: React.FC<LayoutProps> = ({ children }) => {
-//   return (
-//     <div className={style.container}>
-//       <MdCatchingPokemon className={style.containerImg}/>
-//       <nav className={style.navBar}>
-//         <ul>
-//           <li><Link to="/">Home</Link></li>
-//           <li><Link to="/pokemon">About</Link></li>
-//         </ul>
-//       </nav>
-//       <main className={style.main}>
-//         {children}
-//       </main>
-//       <Footer />
-//     </div>
-//   )
-// }
+const Layout: React.FC<LayoutProps> = ({ children, location, messages }) => {
+  const data = useStaticQuery(graphql`
+    query SiteData {
+      site {
+        siteMetadata {
+          title
+          languages {
+            languages {
+              defaultLangKey
+              langs
+            }
+          }
+        }
+      }
+    }
+  `)
 
-const Layout: React.FC<LayoutProps> = ({ children }) => {
+  const { langs, defaultLangKey } = data.site.siteMetadata.languages.languages;
+
+  const langKey = getCurrentLangKey(langs, defaultLangKey, location.pathname);
+
   return (
-    <div className={style.container}>
-      <MdCatchingPokemon className={style.containerImg}/>
-      <NavBar />
-      <main className={style.main}>
-        {children}
-      </main>
-    </div>
+    <IntlProvider locale={langKey} messages={messages}>
+      <div className={style.container}>
+        <MdCatchingPokemon className={style.containerImg}/>
+        <NavBar />
+        <main className={style.main}>
+          {children}
+        </main>
+      </div>
+    </IntlProvider>
   )
 }
 

@@ -1,9 +1,11 @@
-import type { GatsbyConfig } from "gatsby";
+import type { GatsbyConfig } from "gatsby"
+import * as languages from './src/data/languages'
 
 const config: GatsbyConfig = {
   siteMetadata: {
-    title: `pokedex`,
-    siteUrl: `https://www.yourdomain.tld`
+    title: `pokédex`,
+    siteUrl: `https://www.yourdomain.tld`,
+    languages
   },
   // More easily incorporate content into your pages through automatic TypeScript type generation and better GraphQL IntelliSense.
   // If you use VSCode you can also use the GraphQL plugin
@@ -45,6 +47,14 @@ const config: GatsbyConfig = {
           },
         ],
       },
+    }, {
+      resolve: 'gatsby-plugin-i18n',
+        options: {
+          langKeyForNull: 'any',
+          langKeyDefault: languages.languages.defaultLangKey,
+          useLangKeyLayout: true,
+          prefixDefault: false,
+        }
     }]
 };
 

@@ -3,7 +3,7 @@ import { FormattedMessage } from "react-intl"
 import { BiSearchAlt } from "react-icons/bi"
 import Input from '../components/input/input'
 import { Layout } from '../layout/layout'
-import messages from '../data/i18n/en'
+import messages from '../data/i18n/it'
 import * as style from './style/index.module.scss'
 
 const HomePage = (props: { location: any }) => {
