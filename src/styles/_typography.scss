@@ -1,0 +1,45 @@
+%h1 {
+  font-size: px-rem(40);
+  font-weight: 700;
+  line-height: 5.5;
+
+  @include mq(desktop) {
+    font-size: px-rem(48);
+    font-weight: 700;
+    line-height: 7;
+  }
+}
+
+%h2 {
+  font-size: px-rem(33);
+  font-weight: 700;
+  line-height: 5.5;
+
+  @include mq(desktop) {
+    font-size: px-rem(40);
+    font-weight: 700;
+    line-height: 6;
+  }
+}
+
+%h3 {
+  font-size: px-rem(28);
+  font-weight: 700;
+  line-height: 4.5;
+
+  @include mq(desktop) {
+    font-size: px-rem(30);
+    font-weight: 700;
+    line-height: 5;
+  }
+}
+
+%p {
+  font-size: px-rem(16);
+}
+
+%small {
+  font-size: px-rem(13);
+  font-weight: 400;
+  line-height: 2;
+}

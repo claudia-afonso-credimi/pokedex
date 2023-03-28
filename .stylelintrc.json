@@ -14,7 +14,11 @@
       true,
       {
         "ignoreFunctions": [
-          "rem-calc"
+          "px-rem",
+          "convert-to-rem",
+          "list.length",
+          "list.append",
+          "list.nth"
         ]
       }
     ],

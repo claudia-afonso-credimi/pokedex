@@ -1,0 +1,27 @@
+@use 'sass:list';
+
+$base-font-size: 16;
+
+@function convert-to-rem($value, $base-value: $base-font-size) {
+  $value: calc($value / $base-value * 1rem);
+
+  // @if (quote($value) == '0rem') { $value: 0; } // Turn 0rem into 0
+
+  @return $value;
+}
+
+@function px-rem($values, $base-value: $base-font-size) {
+  $max: list.length($values);
+
+  @if $max == 1 {
+    @return convert-to-rem(nth($values, 1), $base-value);
+  }
+
+  $rem-values: ();
+
+  @for $i from 1 through $max {
+    $rem-values: list.append($rem-values, convert-to-rem(list.nth($values, $i), $base-value));
+  }
+
+  @return $rem-values;
+}

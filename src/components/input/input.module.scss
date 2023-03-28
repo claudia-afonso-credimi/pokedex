@@ -1,0 +1,19 @@
+.input {
+  border: px-rem(2) solid $color-neutral;
+  border-radius: px-rem(20);
+  box-shadow: unset;
+  color: $color-dark;
+  display: block;
+  margin-bottom: $spacing-sm;
+  min-width: px-rem(250);
+  padding: px-rem(10 14);
+  width: 100%;
+
+  &::placeholder {
+    color: $color-neutral;
+  }
+
+  &:focus-visible {
+    outline-color: $color-primary-light;
+  }
+}

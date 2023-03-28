@@ -1,0 +1,6 @@
+.title {
+  @extend %h1;
+
+  margin-bottom: $spacing-xs;
+  color: $color-primary;
+}
