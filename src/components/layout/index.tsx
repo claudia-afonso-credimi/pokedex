@@ -8,11 +8,7 @@ type LayoutProps = {
   children: React.ReactElement
 }
 
-type NavBarProps = {
-  languages: string[]
-}
-
-const NavBar: React.FC<NavBarProps> = () => {
+const NavBar: React.FC = () => {
   const {languages, changeLanguage} = useI18next()
 
   return (
@@ -22,6 +18,7 @@ const NavBar: React.FC<NavBarProps> = () => {
           return (
             <li key={index} className={style.listItem}>
               <a
+                className={style.navLink}
                 href="#"
                 onClick={(e) => {
                   e.preventDefault();

@@ -14,6 +14,7 @@
   height: 100%;
   justify-content: center;
   margin: 0 $spacing-md;
+  z-index: 1;
 
   @include mq('desktop') {
     margin: 0 auto;
@@ -30,6 +31,7 @@
   left: -30%;
   top: -30%;
   transform: rotate(-30deg);
+  z-index: 0;
 }
 
 .navBar {
@@ -48,5 +50,14 @@
 
   @include mq('desktop') {
     margin-left: $spacing-sm;
+  }
+}
+
+.navLink {
+  color: $color-light;
+
+  &:hover {
+    color: $color-primary;
+    transition: all 150ms;
   }
 }

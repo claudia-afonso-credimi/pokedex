@@ -14,9 +14,7 @@ const HomePage = () => {
       <>
         <p className={style.overTitle}><Trans>Welcome to Pokédex</Trans></p>
         <h1 className={style.title}><Trans>What Pokémon are you looking for?</Trans></h1>
-        <div>
         <Input icon={BiSearchAlt} />
-        </div>
       </>
     </Layout>
 
