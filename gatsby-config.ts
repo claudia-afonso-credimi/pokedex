@@ -48,14 +48,40 @@ const config: GatsbyConfig = {
         ],
       },
     }, {
-      resolve: 'gatsby-plugin-i18n',
-        options: {
-          langKeyForNull: 'any',
-          langKeyDefault: languages.languages.defaultLangKey,
-          useLangKeyLayout: true,
-          prefixDefault: false,
-        }
-    }]
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/locales`,
+        name: `locale`
+      }
+    }, {
+    resolve: `gatsby-plugin-react-i18next`,
+      options: {
+        localeJsonSourceName: `locale`, // name given to `gatsby-source-filesystem` plugin.
+        languages: [`en`, `es`, `it`],
+        defaultLanguage: `en`,
+        siteUrl: `https://example.com`,
+        // if you are using trailingSlash gatsby config include it here, as well (the default is 'always')
+        trailingSlash: 'always',
+        // you can pass any i18next options
+        i18nextOptions: {
+          interpolation: {
+            escapeValue: false // not needed for react as it escapes by default
+          },
+          keySeparator: false,
+          nsSeparator: false
+        },
+        pages: [
+          {
+            matchPath: '/',
+            languages: [`en`, `es`, `it`]
+          },
+          {
+            matchPath: '/pokemon',
+            languages: [`en`, `es`, `it`]
+          }
+        ]
+      }
+  }]
 };
 
 export default config;
