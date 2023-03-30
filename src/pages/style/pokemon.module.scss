@@ -5,21 +5,13 @@
   color: $color-primary;
 }
 
-.overTitle {
-  @extend %small;
+.cardsGrid {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  grid-template-columns: 1fr;
+  grid-gap: rem(16);
 
-  color: $color-secondary;
-  position: relative;
-  margin-bottom: $spacing-xs;
-
-  &::after {
-    content: '';
-    width: 10%;
-    position: absolute;
-    bottom: -8px;
-    background-color: red;
-    right: 0;
-    height: 2px;
-    left: 0;
+  @include mq('tablet') {
+    grid-template-columns: 1fr 1fr;
   }
 }

@@ -1,0 +1,19 @@
+.card {
+  background-color: $color-dark-tone;
+  border-radius: rem(20);
+  padding: rem(20);
+}
+
+.name {
+  @extend %h3;
+
+  color: $color-light;
+}
+
+.imgContainer {
+  background-color: $color-neutral-light;
+  border-radius: 50%;
+}
+
+.img {
+}

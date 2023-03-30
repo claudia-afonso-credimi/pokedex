@@ -6,6 +6,7 @@ import * as style from './layout.module.scss'
 
 type LayoutProps = {
   children: React.ReactElement
+  full?: Boolean
 }
 
 const NavBar: React.FC = () => {
@@ -17,7 +18,7 @@ const NavBar: React.FC = () => {
     <nav className={style.navBar}>
       {!isHomePage &&
         <Link to="/" className={style.navCta}>
-          <MdOutlineKeyboardBackspace />
+          <MdOutlineKeyboardBackspace size={24} />
         </Link>
       }
       <ul className={style.list}>
@@ -35,15 +36,17 @@ const NavBar: React.FC = () => {
   )
 }
 
-const Layout: React.FC<LayoutProps> = ({ children }) => {
+const Layout: React.FC<LayoutProps> = ({ children, full }) => {
 
   return (
-    <div className={style.container}>
-      <NavBar />
-      <main className={style.main}>
-        {children}
-      </main>
-      <MdCatchingPokemon className={style.containerImg}/>
+    <div className={`${style.container} ${full ? style.full : ''}`}>
+      <div className={style.wrapper}>
+        <NavBar />
+        <main className={`${style.main} ${full ? style.full : ''}`}>
+          {children}
+        </main>
+        <MdCatchingPokemon className={style.containerImg}/>
+      </div>
     </div>
   )
 }
