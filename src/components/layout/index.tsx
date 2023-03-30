@@ -9,9 +9,9 @@ type LayoutProps = {
 }
 
 const NavBar: React.FC = () => {
-  const { languages, originalPath } = useI18next()
-  const path = location.pathname.replace(/\//g, "")
-  const isHomePage = path === '' || languages.includes(path) || languages.includes(`/${path}/`)
+  const { languages, originalPath, path } = useI18next()
+  const currentLang = path.replace(/\//g, "")
+  const isHomePage = path === '/' || languages.includes(currentLang) || languages.includes(`/${currentLang}/`)
 
   return (
     <nav className={style.navBar}>
