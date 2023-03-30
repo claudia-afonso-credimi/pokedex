@@ -6,6 +6,7 @@
   display: block;
   font-size: rem(16);
   margin-bottom: $spacing-sm;
+  max-width: rem(700);
   padding: rem(10 14);
   width: calc(100% - 55px);
 
@@ -15,6 +16,7 @@
 
   &:focus-visible {
     outline-color: $color-primary-light;
+    box-shadow: 0 0 5px $color-primary-light;
   }
 }
 

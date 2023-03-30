@@ -1,7 +1,7 @@
 .title {
   @extend %h1;
 
-  margin-bottom: $spacing-xs;
+  margin-bottom: $spacing-sm;
   color: $color-primary;
 }
 
@@ -10,7 +10,7 @@
 
   color: $color-secondary;
   position: relative;
-  margin-bottom: $spacing-xs;
+  margin-bottom: $spacing-sm;
 
   &::after {
     content: '';
