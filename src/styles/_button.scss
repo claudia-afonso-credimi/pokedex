@@ -1,0 +1,52 @@
+$button-colors: (
+  'primary': (
+    'bg': $color-primary,
+    'hover': $color-primary-light,
+  ),
+  'secondary': (
+    'bg': $color-secondary,
+    'hover': $color-secondary,
+  ),
+);
+
+@mixin button($type: 'primary', $disabled: false) {
+  $colors: map-get($button-colors, $type);
+  $willchange: ();
+
+  @if ($disabled) {
+    opacity: 0.75;
+    pointer-events: none;
+  }
+
+  background-color: map-get($colors, 'bg');
+  border-radius: rem(8);
+  color: $color-dark;
+  display: inline-block;
+  font-size: 1rem;
+  padding: rem(10 16);
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: 450ms all;
+  will-change: background-color, border, color;
+
+  @if $type == 'disabled' {
+    opacity: 0.75;
+    pointer-events: none;
+  } @else {
+    cursor: pointer;
+  }
+
+  &:active,
+  &:focus,
+  &:hover {
+    background-color: map-get($colors, 'hover');
+    box-shadow: 0 0 0 rem(32) map-get($colors, 'hover') inset;
+  }
+
+  &:disabled {
+    opacity: 0.75;
+    pointer-events: none;
+  }
+}

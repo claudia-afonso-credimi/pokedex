@@ -1,3 +1,5 @@
+@import '../../styles/typography';
+
 .container {
   display: flex;
   flex-direction: column;
@@ -35,12 +37,17 @@
 }
 
 .navBar {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
   padding: rem(20);
+  z-index: 1;
 }
 
 .list {
   display: flex;
   justify-content: flex-end;
+  width: 100%;
 }
 
 .listItem {
@@ -53,11 +60,6 @@
   }
 }
 
-.navLink {
-  color: $color-light;
-
-  &:hover {
-    color: $color-primary;
-    transition: all 150ms;
-  }
+.navCta {
+  @extend %link;
 }

@@ -44,3 +44,12 @@
   font-weight: 400;
   line-height: 1;
 }
+
+%link {
+  color: $color-light;
+
+  &:hover {
+    color: $color-primary;
+    transition: all 150ms;
+  }
+}
