@@ -1,6 +1,6 @@
 import * as React from 'react'
-import {Link, useI18next} from 'gatsby-plugin-react-i18next';
 import "@formatjs/intl-pluralrules/polyfill"
+import { Link, useI18next } from 'gatsby-plugin-react-i18next';
 import { MdCatchingPokemon, MdOutlineKeyboardBackspace } from "react-icons/md"
 import * as style from './layout.module.scss'
 
@@ -9,9 +9,9 @@ type LayoutProps = {
 }
 
 const NavBar: React.FC = () => {
-  const {languages, originalPath} = useI18next()
+  const { languages, originalPath } = useI18next()
   const path = location.pathname.replace(/\//g, "")
-  const isHomePage = languages.includes(path) || languages.includes(`/${path}/`)
+  const isHomePage = path === '' || languages.includes(path) || languages.includes(`/${path}/`)
 
   return (
     <nav className={style.navBar}>
