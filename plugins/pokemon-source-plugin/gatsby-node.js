@@ -7,30 +7,18 @@
 const fetch = require('node-fetch')
 
 exports.sourceNodes = async ({ actions: { createNode }, createContentDigest }) => {
-  const promises = []
+  const pokemons = []
   const images = []
-  const urlSpecies = 'https://pokeapi.co/api/v2/pokemon-species/'
-  const urlPokemon = 'https://pokeapi.co/api/v2/pokemon/'
+  const urlSpecies = 'https://pokeapi.co/api/v2/pokemon-species'
+  const urlPokemon = 'https://pokeapi.co/api/v2/pokemon'
 
   for (let i = 1; i <= 151; i++) {
-    promises.push(fetch(`${urlSpecies}/${i}`).then((res) => res.json()))
+    pokemons.push(fetch(`${urlSpecies}/${i}`).then((res) => res.json()))
     images.push(fetch(`${urlPokemon}/${i}`).then((res) => res.json()))
   }
 
-  const getPokemonImage = (sprites) => {
-    let results = sprites
-      .filter((el) => el.language.name === 'it' || el.language.name === 'es' || el.language.name === 'en')
-      .map((filteredData) => {
-        const language = {}
-        const key = filteredData.language.name
-        language[key] = filteredData.genus
-
-        return {
-          language,
-        }
-      })
-
-    return results
+  const getPokemonImage = (pokemon) => {
+    return pokemon.sprites.other.home.front_shiny
   }
 
   const getPokemonGenus = (genera) => {
@@ -110,8 +98,6 @@ exports.sourceNodes = async ({ actions: { createNode }, createContentDigest }) =
     const details = getPokemonDescriptionAndVersion(pokemon.flavor_text_entries)
     const genus = getPokemonGenus(pokemon.genera)
 
-    // console.log(name)
-
     const pokemonData = {
       name,
       genus,
@@ -123,7 +109,7 @@ exports.sourceNodes = async ({ actions: { createNode }, createContentDigest }) =
     return pokemonData
   }
 
-  Promise.all(promises).then((results) => {
+  Promise.all(pokemons).then((results) => {
     const pokemonList = results.map((result) => {
       return transformData(result)
     })
@@ -135,6 +121,23 @@ exports.sourceNodes = async ({ actions: { createNode }, createContentDigest }) =
         internal: {
           type: 'Pokemon',
           contentDigest: createContentDigest(item),
+        },
+      })
+    })
+  })
+
+  Promise.all(images).then((results) => {
+    const pokemonImages = results.map((result) => {
+      return getPokemonImage(result)
+    })
+
+    pokemonImages.forEach((image, index) => {
+      createNode({
+        imageUrl: image,
+        id: 'pokemon-' + index,
+        internal: {
+          type: 'PokemonImages',
+          contentDigest: createContentDigest(image),
         },
       })
     })
