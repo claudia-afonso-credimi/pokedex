@@ -6,8 +6,13 @@ import Input from '../components/input/input'
 import Layout from '../components/layout'
 import * as style from './style/index.module.scss'
 
-const HomePage = () => {
+const HomePage = ({ data }: { data: any}) => {
   const {t} = useTranslation()
+  const userLanguage = data.locales.edges[0].node.language
+  const pokemonData = data.allPokemon.nodes.map((pokemon: any) => {
+    const filteredData = pokemon.locale.filter((el: any) => el.language === userLanguage)
+    return filteredData
+  })
 
   return (
     <Layout>
@@ -35,8 +40,28 @@ export const query = graphql`
           language
         }
       }
+    },
+    allPokemon {
+      nodes {
+        id
+        locale {
+          language
+          genus
+          name
+          details {
+            x
+            y
+          }
+        }
+      }
+    },
+    allPokemonImages {
+      nodes {
+        id
+        imageUrl
+      }
     }
-  }
+  },
 `;
 
 export const Head = () => <title>Home Page</title>

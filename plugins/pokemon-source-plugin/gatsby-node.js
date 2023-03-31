@@ -39,7 +39,10 @@ exports.sourceNodes = async ({ actions: { createNode }, createContentDigest }) =
   }
 
   const getPokemonDescriptionAndVersion = (descriptions) => {
-    let resultsX = descriptions
+    const descriptionsX = [...descriptions]
+    const descriptionsY = [...descriptions]
+
+    let resultsX = descriptionsX
       .filter((el) => el.version.name === 'x')
       .filter(
         (versions) =>
@@ -56,7 +59,7 @@ exports.sourceNodes = async ({ actions: { createNode }, createContentDigest }) =
         return { ...acc, ...lang }
       })
 
-    let resultsY = descriptions
+    let resultsY = descriptionsY
       .filter((el) => el.version.name === 'y')
       .filter(
         (versions) =>
@@ -99,11 +102,36 @@ exports.sourceNodes = async ({ actions: { createNode }, createContentDigest }) =
     const genus = getPokemonGenus(pokemon.genera)
 
     const pokemonData = {
-      name,
-      genus,
-      details,
-      // image: result.sprites.other.home.front_default,
       id: pokemon.id,
+      locale: [
+        {
+          language: 'it',
+          name: name.it,
+          genus: genus.it,
+          details: {
+            x: details.x.it,
+            y: details.y.it,
+          },
+        },
+        {
+          language: 'es',
+          name: name.es,
+          genus: genus.es,
+          details: {
+            x: details.x.es,
+            y: details.y.es,
+          },
+        },
+        {
+          language: 'en',
+          name: name.en,
+          genus: genus.en,
+          details: {
+            x: details.x.en,
+            y: details.y.en,
+          },
+        },
+      ],
     }
 
     return pokemonData
