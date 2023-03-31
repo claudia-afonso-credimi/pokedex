@@ -17,7 +17,7 @@ const Card: React.FC<CardProps> = ({ data }) => {
   return (
     <div className={style.card}>
         <div className={style.imgContainer}>
-          <GatsbyImage className={style.img} image={imageTemp} alt={'data.blogPost.author'} />
+          {/* <GatsbyImage className={style.img} image={imageTemp} alt={'data.blogPost.author'} /> */}
         </div>
         <h2 className={style.name}>Bulbasaur</h2>
     </div>

@@ -1,10 +1,33 @@
-// ○ Pokemon number - DONE
-// ○ Pokemon name (in correct language) - DONE
-// ○ Pokemon genus (in correct language) -
-// ○ Pokemon description (in correct language) - DONE
-// ○ Pokemon image -
-
 const fetch = require('node-fetch')
+
+exports.createSchemaCustomization = ({ actions }) => {
+  const { createTypes } = actions
+
+  const typeDefs = `
+    type Details implements Node {
+      x: String
+      y: String
+    }
+
+    type Locale implements Node {
+      language: String
+      name: String
+      genus: String
+      details: Details
+    }
+
+    type Pokemon implements Node {
+      id: Int!
+      locale: [Locale]
+    }
+
+    type PokemonImages implements Node {
+      imageUrl: String,
+      id: String
+    }
+  `
+  createTypes(typeDefs)
+}
 
 exports.sourceNodes = async ({ actions: { createNode }, createContentDigest }) => {
   const pokemons = []
