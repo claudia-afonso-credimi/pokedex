@@ -4,67 +4,85 @@ import { Trans, useTranslation } from 'gatsby-plugin-react-i18next'
 import Layout from '../components/layout'
 import Card from '../components/card'
 import * as style from './style/pokemon.module.scss'
+import { Locales, Pokemon, PokemonImages, PokemonLocale } from '../types/types'
 
-const Pokemon = ({ data }: { data: Record<string, any>}) => {
+type PokemonProps = {
+  data: {
+    locales:  {
+      edges: [{
+        node: Locales
+      }]
+    }
+    allPokemon: {
+      nodes: PokemonLocale[]
+    }
+    allPokemonImages: {
+      nodes: PokemonImages[]
+    }
+  }
+}
+
+const PokemonCard: React.FC<PokemonProps> = ({ data }) => {
+  const userLanguage = data.locales.edges[0].node.language
+  const pokemonData = data.allPokemon.nodes.map((pokemon: any,) => {
+    const filteredData = pokemon.locale.filter((el: any) => el.language === userLanguage)
+    const image = data.allPokemonImages.nodes.find((el: any, index: any) => { el.id === `pokemon-${index}`})
+    return { ...filteredData[0], imageUrl: image?.imageUrl }
+  }).flat()
+
   return (
     <Layout full>
       <>
         <h1 className={style.title}><Trans>Pokédex</Trans></h1>
-        <div className={style.cardsGrid}>
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-        </div>
+        <ul className={style.cardsGrid}>
+          {pokemonData.map((el: Pokemon, index: number) => {
+            return (
+              <li key={index}>
+                <Card pokemon={el} />
+              </li>
+            )}
+          )}
+        </ul>
       </>
     </Layout>
 
   )
 }
 
-// export const query = graphql`
-//   query ($language: String!) {
-//     locales: allLocale(filter: {language: {eq: $language}}) {
-//       edges {
-//         node {
-//           ns
-//           data
-//           language
-//         }
-//       }
-//     },
-//      allNyTimesArticles(
-//       filter: {
-//         pub_date: { eq: "1980-11-23T05:00:00+0000" }
-//         abstract: { ne: "" }
-//       }
-//     ) {
-//       nodes {
-//         pub_date
-//         headline {
-//           main
-//         }
-//         abstract
-//         web_url
-//       }
-//     }
-//   },
-// `;
+export const query = graphql`
+  query ($language: String!) {
+    locales: allLocale(filter: {language: {eq: $language}}) {
+      edges {
+        node {
+          ns
+          data
+          language
+        }
+      }
+    },
+    allPokemon {
+      nodes {
+        id
+        locale {
+          language
+          genus
+          name
+          details {
+            x
+            y
+          }
+        }
+      }
+    },
+    allPokemonImages {
+      nodes {
+        id
+        imageUrl
+      }
+    }
+  },
+`;
 
 export const Head = () => <title>Pokemon page</title>
 
-export default Pokemon
+export default PokemonCard

@@ -166,6 +166,7 @@ exports.sourceNodes = async ({ actions: { createNode }, createContentDigest }) =
     })
 
     pokemonList.forEach((item) => {
+      console.log(item)
       createNode({
         ...item,
         id: 'pokemon-' + item.id,
@@ -183,6 +184,7 @@ exports.sourceNodes = async ({ actions: { createNode }, createContentDigest }) =
     })
 
     pokemonImages.forEach((image, index) => {
+      console.log(image)
       createNode({
         imageUrl: image,
         id: 'pokemon-' + index,

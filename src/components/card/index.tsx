@@ -1,25 +1,19 @@
-import { GatsbyImage } from 'gatsby-plugin-image'
+import { StaticImage } from 'gatsby-plugin-image'
 import React from 'react'
+import { Pokemon } from '../../types/types'
 import * as style from './card.module.scss'
 
-type CardProps = {
-  data?: Record<string, any>
+type PokemonProps = {
+  pokemon: Pokemon
 }
 
-// ○ Pokemon number
-// ○ Pokemon name (in correct language)
-// ○ Pokemon genus (in correct language)
-// ○ Pokemon description (in correct language)
-// ○ Pokemon image
-
-const Card: React.FC<CardProps> = ({ data }) => {
-  const imageTemp = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/1.png" as IGatsbyImageData
+const Card: React.FC<PokemonProps> = ({ pokemon }) => {
   return (
     <div className={style.card}>
         <div className={style.imgContainer}>
-          {/* <GatsbyImage className={style.img} image={imageTemp} alt={'data.blogPost.author'} /> */}
+        {/* {imagehere} */}
         </div>
-        <h2 className={style.name}>Bulbasaur</h2>
+        <h2 className={style.name}>{pokemon.name}</h2>
     </div>
   )
 }
