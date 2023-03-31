@@ -6,6 +6,7 @@ export type Locales = {
 
 export type PokemonLocale = {
   id: string
+  imageUrl: string
   locale: Pokemon[]
 }
 

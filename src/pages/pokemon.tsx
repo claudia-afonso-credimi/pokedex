@@ -3,8 +3,8 @@ import { graphql } from 'gatsby'
 import { Trans, useTranslation } from 'gatsby-plugin-react-i18next'
 import Layout from '../components/layout'
 import Card from '../components/card'
+import { Locales, Pokemon, PokemonLocale } from '../types/types'
 import * as style from './style/pokemon.module.scss'
-import { Locales, Pokemon, PokemonImages, PokemonLocale } from '../types/types'
 
 type PokemonProps = {
   data: {
@@ -15,9 +15,6 @@ type PokemonProps = {
     }
     allPokemon: {
       nodes: PokemonLocale[]
-    }
-    allPokemonImages: {
-      nodes: PokemonImages[]
     }
   }
 }
