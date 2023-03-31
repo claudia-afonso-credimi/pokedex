@@ -1,29 +1,26 @@
 const fetch = require('node-fetch')
+const axios = require('axios')
 
 exports.createSchemaCustomization = ({ actions }) => {
   const { createTypes } = actions
 
   const typeDefs = `
     type Details implements Node {
-      x: String
-      y: String
+      x: String!
+      y: String!
     }
 
     type Locale implements Node {
       language: String
-      name: String
-      genus: String
+      name: String!
+      genus: String!
       details: Details
     }
 
     type Pokemon implements Node {
-      id: Int!
+      id: String!
+      imageUrl: String!
       locale: [Locale]
-    }
-
-    type PokemonImages implements Node {
-      imageUrl: String,
-      id: String
     }
   `
   createTypes(typeDefs)
@@ -31,17 +28,15 @@ exports.createSchemaCustomization = ({ actions }) => {
 
 exports.sourceNodes = async ({ actions: { createNode }, createContentDigest }) => {
   const pokemons = []
-  const images = []
   const urlSpecies = 'https://pokeapi.co/api/v2/pokemon-species'
   const urlPokemon = 'https://pokeapi.co/api/v2/pokemon'
 
-  for (let i = 1; i <= 151; i++) {
-    pokemons.push(fetch(`${urlSpecies}/${i}`).then((res) => res.json()))
-    images.push(fetch(`${urlPokemon}/${i}`).then((res) => res.json()))
+  const fetchPokemonData = async (i) => {
+    return axios.get(`${urlSpecies}/${i}`)
   }
 
-  const getPokemonImage = (pokemon) => {
-    return pokemon.sprites.other.home.front_shiny
+  const fetchPokemonImage = async (i) => {
+    return axios.get(`${urlPokemon}/${i}`)
   }
 
   const getPokemonGenus = (genera) => {
@@ -160,39 +155,21 @@ exports.sourceNodes = async ({ actions: { createNode }, createContentDigest }) =
     return pokemonData
   }
 
-  Promise.all(pokemons).then((results) => {
-    const pokemonList = results.map((result) => {
-      return transformData(result)
-    })
+  for (let i = 1; i <= 151; i++) {
+    const pokemonData = await fetchPokemonData(i)
+    const pokemonImageData = await fetchPokemonImage(i)
 
-    pokemonList.forEach((item) => {
-      console.log(item)
-      createNode({
-        ...item,
-        id: 'pokemon-' + item.id,
-        internal: {
-          type: 'Pokemon',
-          contentDigest: createContentDigest(item),
-        },
-      })
-    })
-  })
+    const pokemon = transformData(pokemonData.data)
+    const pokemonImage = pokemonImageData.data.sprites.other.home.front_shiny
 
-  Promise.all(images).then((results) => {
-    const pokemonImages = results.map((result) => {
-      return getPokemonImage(result)
+    createNode({
+      ...pokemon,
+      id: 'pokemon-' + pokemon.id,
+      imageUrl: pokemonImage,
+      internal: {
+        type: 'Pokemon',
+        contentDigest: createContentDigest(pokemon),
+      },
     })
-
-    pokemonImages.forEach((image, index) => {
-      console.log(image)
-      createNode({
-        imageUrl: image,
-        id: 'pokemon-' + index,
-        internal: {
-          type: 'PokemonImages',
-          contentDigest: createContentDigest(image),
-        },
-      })
-    })
-  })
+  }
 }

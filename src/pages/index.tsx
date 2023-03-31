@@ -9,9 +9,9 @@ import * as style from './style/index.module.scss'
 const HomePage = ({ data }: { data: any}) => {
   const {t} = useTranslation()
   const userLanguage = data.locales.edges[0].node.language
-  const pokemonData = data.allPokemon.nodes.map((pokemon: any) => {
+  const pokemonData = data.allPokemon.nodes.map((pokemon: any,) => {
     const filteredData = pokemon.locale.filter((el: any) => el.language === userLanguage)
-    return filteredData
+    return filteredData[0]
   })
 
   return (
@@ -44,6 +44,7 @@ export const query = graphql`
     allPokemon {
       nodes {
         id
+        imageUrl
         locale {
           language
           genus
@@ -53,12 +54,6 @@ export const query = graphql`
             y
           }
         }
-      }
-    },
-    allPokemonImages {
-      nodes {
-        id
-        imageUrl
       }
     }
   },

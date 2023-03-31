@@ -26,9 +26,8 @@ const PokemonCard: React.FC<PokemonProps> = ({ data }) => {
   const userLanguage = data.locales.edges[0].node.language
   const pokemonData = data.allPokemon.nodes.map((pokemon: any,) => {
     const filteredData = pokemon.locale.filter((el: any) => el.language === userLanguage)
-    const image = data.allPokemonImages.nodes.find((el: any, index: any) => { el.id === `pokemon-${index}`})
-    return { ...filteredData[0], imageUrl: image?.imageUrl }
-  }).flat()
+    return filteredData[0]
+  })
 
   return (
     <Layout full>
@@ -63,6 +62,7 @@ export const query = graphql`
     allPokemon {
       nodes {
         id
+        imageUrl
         locale {
           language
           genus
@@ -73,14 +73,8 @@ export const query = graphql`
           }
         }
       }
-    },
-    allPokemonImages {
-      nodes {
-        id
-        imageUrl
-      }
     }
-  },
+  }
 `;
 
 export const Head = () => <title>Pokemon page</title>
