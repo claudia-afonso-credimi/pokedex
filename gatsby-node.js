@@ -1,8 +1,9 @@
-exports.createPages = async function ({ actions, graphql }) {
+exports.createPages = ({ actions, graphql }) => {
   const createPage = actions.createPage
-  const { data } = await graphql(`
+  const pages = graphql(`
     query {
       allPokemon {
+        totalCount
         nodes {
           id
           imageUrl
@@ -18,30 +19,33 @@ exports.createPages = async function ({ actions, graphql }) {
         }
       }
     }
-  `)
-  data.allPokemon.nodes.forEach((el) => {
-    const slug = el.id
-    createPage({
-      path: slug,
-      component: require.resolve('./src/pages/pokemon.tsx'),
-      context: { slug: slug },
+  `).then((response) => {
+    const pokemon = response
+    const itemsPerPage = 10
+    const numPages = Math.ceil(pokemon.data.allPokemon.totalCount / itemsPerPage)
+
+    Array.from({ length: numPages }).forEach((_, i) => {
+      createPage({
+        path: i === 0 ? `/page` : `/page/${i + 1}`,
+        component: require.resolve('./src/templates/all-pokemon.tsx'),
+        context: {
+          limit: itemsPerPage,
+          skip: i * itemsPerPage,
+          numPages,
+          currentPage: i + 1,
+        },
+      })
+    })
+
+    pokemon.data.allPokemon.nodes.forEach((el) => {
+      const slug = el.id
+      createPage({
+        path: slug,
+        component: require.resolve('./src/templates/pokemon.tsx'),
+        context: { slug: slug },
+      })
     })
   })
 
-  const items = data.allPokemon.nodes
-  const itemsPerPage = 10
-  const numPages = Math.ceil(items.length / itemsPerPage)
-
-  Array.from({ length: numPages }).forEach((_, i) => {
-    createPage({
-      path: i === 0 ? `/page` : `/page/${i + 1}`,
-      component: require.resolve('./src/pages/all-pokemon.tsx'),
-      context: {
-        limit: itemsPerPage,
-        skip: i * itemsPerPage,
-        numPages,
-        currentPage: i + 1,
-      },
-    })
-  })
+  return Promise.all([pages])
 }

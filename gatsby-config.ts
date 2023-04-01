@@ -72,10 +72,6 @@ const config: GatsbyConfig = {
           {
             matchPath: '/',
             languages: [`en`, `es`, `it`]
-          },
-          {
-            matchPath: '/pokemon',
-            languages: [`en`, `es`, `it`]
           }
         ]
       }

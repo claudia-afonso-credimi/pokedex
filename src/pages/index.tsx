@@ -11,7 +11,7 @@ const HomePage = ({ data }: { data: any}) => {
   const userLanguage = data.locales.edges[0].node.language
   const pokemonData = data.allPokemon.nodes.map((pokemon: any,) => {
     const filteredData = pokemon.locale.filter((el: any) => el.language === userLanguage)
-    return { key: filteredData[0].name, value: filteredData[0].name }
+    return { key: pokemon.id, value: filteredData[0].name }
   })
 
   return (
@@ -23,7 +23,7 @@ const HomePage = ({ data }: { data: any}) => {
           <ReactSearchBox
             placeholder="Bulbasaur..."
             data={pokemonData}
-            onSelect={(value) => window && (window.location.href = `${value.item.value}`)}
+            onSelect={(value) => window && (window.location.href = `${value.item.key}`)}
             onChange={() => null}
             autoFocus
             leftIcon={<BiSearchAlt />}
@@ -32,7 +32,7 @@ const HomePage = ({ data }: { data: any}) => {
         </div>
         <div className={style.ctaContainer}>
           <Link to={'/pokemon'} className={style.cta}><Trans>Search</Trans></Link>
-          <Link to={'/all-pokemon'} className={style.cta}><Trans>Show all</Trans></Link>
+          <Link to={'/page'} className={style.cta}><Trans>Show all</Trans></Link>
         </div>
       </>
     </Layout>

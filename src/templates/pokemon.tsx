@@ -4,7 +4,7 @@ import { Trans, useTranslation } from 'gatsby-plugin-react-i18next'
 import Layout from '../components/layout'
 import Card from '../components/card'
 import { Locales, Pokemon, PokemonLocale } from '../types/types'
-import * as style from './style/pokemon.module.scss'
+import * as style from '../pages/style/pokemon.module.scss'
 
 type PokemonPageProps = {
   data: {

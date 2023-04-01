@@ -26,7 +26,6 @@ exports.createSchemaCustomization = ({ actions }) => {
 }
 
 exports.sourceNodes = async ({ actions: { createNode }, createContentDigest }) => {
-  const pokemons = []
   const urlSpecies = 'https://pokeapi.co/api/v2/pokemon-species'
   const urlPokemon = 'https://pokeapi.co/api/v2/pokemon'
 
