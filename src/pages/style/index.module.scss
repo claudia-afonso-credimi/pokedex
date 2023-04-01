@@ -34,3 +34,44 @@
 
   margin: rem(0 16 0 0);
 }
+
+.input {
+  margin-bottom: $spacing-sm;
+  position: relative;
+
+  @include mq('desktop') {
+    max-width: rem(700);
+  }
+
+  input {
+    border: rem(2) solid $color-neutral;
+    border-radius: rem(20);
+    box-shadow: unset;
+    color: $color-dark;
+    display: block;
+    font-size: rem(16);
+    margin: 0 0 $spacing-xs 0;
+    padding: rem(10 14 10 40);
+
+    &::placeholder {
+      color: $color-neutral-light;
+    }
+
+    &:focus-visible {
+      outline-color: $color-primary-light;
+      box-shadow: 0 0 5px $color-primary-light;
+    }
+  }
+
+  div[class*='react-search-box-dropdown'] {
+    overflow: scroll;
+    max-height: rem(180);
+    position: absolute;
+    width: 100%;
+    top: rem(35);
+  }
+
+  li[class*='react-search-box-dropdown-list-item'] {
+    color: $color-dark-tone;
+  }
+}
