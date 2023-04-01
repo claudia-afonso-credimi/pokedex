@@ -2,6 +2,14 @@
   background-color: $color-dark-tone;
   border-radius: rem(20);
   padding: rem(20);
+  width: calc(100% - #{rem(40)});
+  display: inline-block;
+  text-decoration: none;
+
+  &:hover {
+    box-shadow: 0 0 10px 0 $color-primary-light;
+    transition: all 200ms;
+  }
 }
 
 .name {

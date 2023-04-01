@@ -1,12 +1,12 @@
 import * as React from 'react'
 import { graphql } from 'gatsby'
-import { Trans, useTranslation } from 'gatsby-plugin-react-i18next'
+import { Link, Trans, useTranslation } from 'gatsby-plugin-react-i18next'
 import Layout from '../components/layout'
 import Card from '../components/card'
 import { Locales, Pokemon, PokemonLocale } from '../types/types'
 import * as style from './style/pokemon.module.scss'
 
-type PokemonPageProps = {
+type PokemonListProps = {
   data: {
     locales:  {
       edges: [{
@@ -19,7 +19,7 @@ type PokemonPageProps = {
   }
 }
 
-const PokemonPage: React.FC<PokemonPageProps> = ({ data }) => {
+const PokemonList: React.FC<PokemonListProps> = ({ data }) => {
   const userLanguage = data.locales.edges[0].node.language
   const pokemonData = data.allPokemon.nodes.map((pokemon: any,) => {
     const filteredData = pokemon.locale.filter((el: any) => el.language === userLanguage)
@@ -29,12 +29,16 @@ const PokemonPage: React.FC<PokemonPageProps> = ({ data }) => {
   return (
     <Layout full>
       <>
-        <h1 className={style.title}>Image goes here!</h1>
-        <h1 className={style.title}>{pokemonData[0].name}</h1>
-        <h1 className={style.title}>{pokemonData[0].genus}</h1>
-        <h1 className={style.title}>{pokemonData[0].details.x}</h1>
-        <h1 className={style.title}>{pokemonData[0].details.y}</h1>
-        <h1 className={style.title}>{pokemonData[0].id}</h1>
+        <h1 className={style.title}><Trans>Pokédex</Trans></h1>
+        <ul className={style.cardsGrid}>
+          {pokemonData.map((el: Pokemon, index: number) => {
+            return (
+              <li key={index}>
+                <Card pokemon={el} />
+              </li>
+            )}
+          )}
+        </ul>
       </>
     </Layout>
 
@@ -42,9 +46,9 @@ const PokemonPage: React.FC<PokemonPageProps> = ({ data }) => {
 }
 
 export const query = graphql`
-  query ($language: String!, $slug: String!) {
+  query ($language: String!,$limit: Int!) {
     locales: allLocale(filter: {language: {eq: $language}}) {
-    	edges {
+      edges {
         node {
           ns
           data
@@ -52,7 +56,9 @@ export const query = graphql`
         }
       }
     },
-    allPokemon(filter: {id: {eq: $slug}}) {
+    allPokemon (
+      limit: $limit
+    ) {
       nodes {
         id
         imageUrl
@@ -79,6 +85,6 @@ export const query = graphql`
   }
 `;
 
-export const Head = () => <title>Pokémon</title>
+export const Head = () => <title>All Pokémon</title>
 
-export default PokemonPage
+export default PokemonList

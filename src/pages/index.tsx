@@ -32,7 +32,7 @@ const HomePage = ({ data }: { data: any}) => {
         </div>
         <div className={style.ctaContainer}>
           <Link to={'/pokemon'} className={style.cta}><Trans>Search</Trans></Link>
-          <Link to={'/pokemon'} className={style.cta}><Trans>Show all</Trans></Link>
+          <Link to={'/all-pokemon'} className={style.cta}><Trans>Show all</Trans></Link>
         </div>
       </>
     </Layout>

@@ -79,7 +79,13 @@ const config: GatsbyConfig = {
           }
         ]
       }
-  }]
+  },{
+    resolve: `gatsby-plugin-remote-images`,
+    options: {
+      nodeType: 'Pokemon',
+      imagePath: 'nodes[].imageUrl'
+    },
+  }, "gatsby-plugin-image", "gatsby-awesome-pagination"]
 };
 
 export default config;

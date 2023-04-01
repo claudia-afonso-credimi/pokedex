@@ -45,7 +45,7 @@ const Layout: React.FC<LayoutProps> = ({ children, full }) => {
         <main className={`${style.main} ${full ? style.full : ''}`}>
           {children}
         </main>
-        <MdCatchingPokemon className={style.containerImg}/>
+        {/* <MdCatchingPokemon className={style.containerImg}/> */}
       </div>
     </div>
   )

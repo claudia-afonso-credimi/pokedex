@@ -11,6 +11,7 @@ export type PokemonLocale = {
 }
 
 export type Pokemon = {
+  id: string
   language: string
   genus: string
   name: string
