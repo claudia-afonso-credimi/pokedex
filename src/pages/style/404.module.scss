@@ -1,0 +1,27 @@
+.codeStyles {
+  background-color: #fff4db;
+  border-radius: rem(4);
+  color: #8a6534;
+  font-size: '1.25rem';
+  padding: rem(4);
+}
+
+.title {
+  @extend %h1;
+
+  color: $color-primary;
+  margin-bottom: $spacing-xl;
+  text-align: center;
+}
+
+.details {
+  @extend %p;
+
+  color: $color-light;
+  margin-bottom: $spacing-md;
+  text-align: center;
+}
+
+.link {
+  @extend %link;
+}
