@@ -1,7 +1,9 @@
 export type Locales = {
-  ns: string
-  data: string
-  language: string
+  edges: {
+    node: {
+      language: string
+    }
+  }[]
 }
 
 export type PokemonLocale = {
@@ -24,4 +26,11 @@ export type Pokemon = {
 export type PokemonImages = {
   id: string
   imageUrl: string
+}
+
+export type PokemonPageProps = {
+  allPokemon: {
+    nodes: PokemonLocale[]
+  }
+  allLocale: Locales
 }

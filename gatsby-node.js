@@ -32,8 +32,8 @@ exports.createPages = ({ actions, graphql }) => {
           limit: itemsPerPage,
           skip: i * itemsPerPage,
           numPages,
-          currentPage: i + 1,
-        },
+          currentPage: i + 1
+        }
       })
     })
 
@@ -42,7 +42,7 @@ exports.createPages = ({ actions, graphql }) => {
       createPage({
         path: slug,
         component: require.resolve('./src/templates/pokemon.tsx'),
-        context: { slug: slug },
+        context: { slug: slug }
       })
     })
   })

@@ -1,4 +1,3 @@
-import { StaticImage } from 'gatsby-plugin-image'
 import { Link } from 'gatsby-plugin-react-i18next'
 import React from 'react'
 import { Pokemon } from '../../types/types'
@@ -11,8 +10,8 @@ type CardProps = {
 const Card: React.FC<CardProps> = ({ pokemon }) => {
   return (
     <Link className={style.card} to={`/${pokemon.id}`}>
-        <h2 className={style.name}>{pokemon.name}</h2>
-        <div className={style.imgContainer}></div>
+      <h2 className={style.name}>{pokemon.name}</h2>
+      <div className={style.imgContainer}></div>
     </Link>
   )
 }

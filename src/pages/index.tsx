@@ -1,55 +1,64 @@
 import * as React from 'react'
-import { graphql, navigate } from 'gatsby'
-import ReactSearchBox from "react-search-box"
+import { graphql, PageProps } from 'gatsby'
+import ReactSearchBox from 'react-search-box'
 import { Link, Trans, useTranslation } from 'gatsby-plugin-react-i18next'
-import { BiSearchAlt } from "react-icons/bi"
+import { BiSearchAlt } from 'react-icons/bi'
+import { PokemonLocale, Pokemon, PokemonPageProps } from '../types/types'
 import Layout from '../components/layout'
-import * as style from './style/index.module.scss'
+import style from './style/index.module.scss'
 
-const HomePage = ({ data }: { data: any}) => {
-  const {t} = useTranslation()
-  const userLanguage = data.locales.edges[0].node.language
-  const pokemonData = data.allPokemon.nodes.map((pokemon: any,) => {
-    const filteredData = pokemon.locale.filter((el: any) => el.language === userLanguage)
+type PokemonSearchBox = {
+  key: string
+  value: string
+}[]
+
+const HomePage: React.FC<PageProps<PokemonPageProps>> = ({ data }) => {
+  const { t } = useTranslation()
+  const userLanguage: string = data.allLocale.edges[0].node.language
+  const pokemonData: PokemonSearchBox = data.allPokemon.nodes.map((pokemon: PokemonLocale) => {
+    const filteredData = pokemon.locale.filter((el: Pokemon) => el.language === userLanguage)
     return { key: pokemon.id, value: filteredData[0].name }
   })
 
   return (
     <Layout>
       <>
-        <p className={style.overTitle}><Trans>Welcome to Pokédex</Trans></p>
-        <h1 className={style.title}><Trans>What Pokémon are you looking for?</Trans></h1>
+        <p className={style.overTitle}>
+          <Trans>Welcome to Pokédex</Trans>
+        </p>
+        <h1 className={style.title}>
+          <Trans>What Pokémon are you looking for?</Trans>
+        </h1>
         <div className={style.input}>
           <ReactSearchBox
-            placeholder="Bulbasaur..."
+            placeholder='Bulbasaur...'
             data={pokemonData}
             onSelect={(value) => window && (window.location.href = `${value.item.key}`)}
             onChange={() => null}
             autoFocus
-            leftIcon={<BiSearchAlt className={style.inputIcon}/>}
-            iconBoxSize="48px"
+            leftIcon={<BiSearchAlt className={style.inputIcon} />}
+            iconBoxSize='48px'
           />
         </div>
         <div className={style.ctaContainer}>
-          <Link to={'/page'} className={style.cta}><Trans>Show all</Trans></Link>
+          <Link to={'/page'} className={style.cta}>
+            <Trans>Show all</Trans>
+          </Link>
         </div>
       </>
     </Layout>
-
   )
 }
 
 export const query = graphql`
   query ($language: String!) {
-    locales: allLocale(filter: {language: {eq: $language}}) {
+    allLocale(filter: { language: { eq: $language } }) {
       edges {
         node {
-          ns
-          data
           language
         }
       }
-    },
+    }
     allPokemon {
       nodes {
         id
@@ -65,9 +74,9 @@ export const query = graphql`
         }
       }
     }
-  },
-`;
+  }
+`
 
-export const Head = () => <title>Home Page</title>
+export const Head = (): JSX.Element => <title>Home Page</title>
 
 export default HomePage
