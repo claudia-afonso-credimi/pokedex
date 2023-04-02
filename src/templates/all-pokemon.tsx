@@ -90,6 +90,10 @@ export const query = graphql`
   }
 `
 
-export const Head = () => <title>All Pokémon</title>
+export const Head = () => (
+  <title>
+    <Trans>Pokédex</Trans>
+  </title>
+)
 
 export default PokemonList

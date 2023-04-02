@@ -79,6 +79,10 @@ export const query = graphql`
   }
 `
 
-export const Head = (): JSX.Element => <title>Home Page</title>
+export const Head = (): JSX.Element => (
+  <title>
+    <Trans>Home Page</Trans>
+  </title>
+)
 
 export default HomePage
