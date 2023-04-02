@@ -1,0 +1,65 @@
+.container {
+  background-color: $color-dark-tone;
+  box-sizing: border-box;
+  border-radius: rem(5);
+  padding: rem(100) $spacing-xl $spacing-xl $spacing-xl;
+  position: relative;
+  margin: rem(100) auto $spacing-xl auto;
+  max-width: rem(600);
+
+  &:hover {
+    box-shadow: 0 0 20px 0 rgb($color-primary-light, 30%);
+    transition: all 200ms;
+  }
+}
+
+.title {
+  @extend %h1;
+
+  margin-bottom: $spacing-xl;
+  color: $color-primary;
+  text-align: center;
+}
+
+.detailsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  background-color: rgb($color-light, 0.03);
+  padding-top: $spacing-xl;
+}
+
+.pokemonDetails {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: $spacing-md;
+}
+
+.details {
+  @extend %p;
+
+  margin-bottom: $spacing-md;
+  color: $color-light;
+  max-width: rem(500);
+}
+
+.detailsTitle {
+  @extend %p;
+
+  font-weight: 700;
+  margin-bottom: $spacing-xs;
+  color: $color-primary;
+}
+
+.image {
+  width: 200px;
+  height: 200px;
+  background-color: white;
+  border-radius: 50%;
+  position: absolute;
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+}

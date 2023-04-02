@@ -1,0 +1,39 @@
+.title {
+  @extend %h2;
+
+  margin-bottom: $spacing-md;
+  color: $color-primary;
+}
+
+.cardsGrid {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  grid-template-columns: 1fr;
+  grid-gap: rem(20);
+  margin-bottom: $spacing-md;
+
+  @include mq('tablet') {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  padding: $spacing-lg 0;
+
+  &.firstPage {
+    align-self: flex-end;
+  }
+
+  &.lastPage {
+    align-self: flex-start;
+  }
+}
+
+.paginationLink {
+  @extend %link;
+
+  display: flex;
+  align-items: center;
+}

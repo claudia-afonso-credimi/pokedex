@@ -1,13 +1,15 @@
 .card {
   background-color: $color-dark-tone;
-  border-radius: rem(20);
+  border-radius: rem(5);
   padding: rem(20);
   width: calc(100% - #{rem(40)});
-  display: inline-block;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
   text-decoration: none;
 
   &:hover {
-    box-shadow: 0 0 10px 0 $color-primary-light;
+    box-shadow: 0 0 15px 0 rgb($color-primary-light, 30%);
     transition: all 200ms;
   }
 }
@@ -19,8 +21,10 @@
 }
 
 .imgContainer {
-  background-color: $color-neutral-light;
+  background-color: $color-light;
   border-radius: 50%;
+  width: 100px;
+  height: 100px;
 }
 
 .img {

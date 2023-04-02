@@ -19,7 +19,7 @@ $button-colors: (
   }
 
   background-color: map-get($colors, 'bg');
-  border-radius: rem(8);
+  border-radius: rem(5);
   color: $color-dark;
   display: inline-block;
   font-size: 1rem;

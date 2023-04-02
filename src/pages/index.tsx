@@ -26,12 +26,11 @@ const HomePage = ({ data }: { data: any}) => {
             onSelect={(value) => window && (window.location.href = `${value.item.key}`)}
             onChange={() => null}
             autoFocus
-            leftIcon={<BiSearchAlt />}
+            leftIcon={<BiSearchAlt className={style.inputIcon}/>}
             iconBoxSize="48px"
           />
         </div>
         <div className={style.ctaContainer}>
-          <Link to={'/pokemon'} className={style.cta}><Trans>Search</Trans></Link>
           <Link to={'/page'} className={style.cta}><Trans>Show all</Trans></Link>
         </div>
       </>

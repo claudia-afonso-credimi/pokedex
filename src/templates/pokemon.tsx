@@ -2,9 +2,8 @@ import * as React from 'react'
 import { graphql } from 'gatsby'
 import { Trans, useTranslation } from 'gatsby-plugin-react-i18next'
 import Layout from '../components/layout'
-import Card from '../components/card'
 import { Locales, Pokemon, PokemonLocale } from '../types/types'
-import * as style from '../pages/style/pokemon.module.scss'
+import * as style from './style/pokemon.module.scss'
 
 type PokemonPageProps = {
   data: {
@@ -28,14 +27,31 @@ const PokemonPage: React.FC<PokemonPageProps> = ({ data }) => {
 
   return (
     <Layout full>
-      <>
-        <h1 className={style.title}>Image goes here!</h1>
+      <div className={style.container}>
+        <div className={style.image}></div>
         <h1 className={style.title}>{pokemonData[0].name}</h1>
-        <h1 className={style.title}>{pokemonData[0].genus}</h1>
-        <h1 className={style.title}>{pokemonData[0].details.x}</h1>
-        <h1 className={style.title}>{pokemonData[0].details.y}</h1>
-        <h1 className={style.title}>{pokemonData[0].id}</h1>
-      </>
+        <div className={style.detailsContainer}>
+          <div className={style.pokemonDetails}>
+            <p className={style.detailsTitle}><Trans>Number: </Trans></p>
+            <p className={style.details}>{pokemonData[0].id.split('-')[1]}</p>
+          </div>
+          <div className={style.pokemonDetails}>
+            <p className={style.detailsTitle}><Trans>Genus: </Trans></p>
+            <p className={style.details}>{pokemonData[0].genus}</p>
+          </div>
+          <div className={style.pokemonDetails}>
+            <p className={style.detailsTitle}><Trans>X: </Trans></p>
+            <p className={style.details}>{pokemonData[0].details.x}</p>
+          </div>
+          <div className={style.pokemonDetails}>
+            <p className={style.detailsTitle}><Trans>Y: </Trans></p>
+            <p className={style.details}>{pokemonData[0].details.y}</p>
+          </div>
+        </div>
+        {/* <p className={style.details}><Trans>Genus: </Trans>{pokemonData[0].genus}</p>
+        <p className={style.details}><Trans>X: </Trans>{pokemonData[0].details.x}</p>
+        <p className={style.details}><Trans>Y: </Trans>{pokemonData[0].details.y}</p> */}
+      </div>
     </Layout>
 
   )
@@ -56,15 +72,6 @@ export const query = graphql`
       nodes {
         id
         imageUrl
-        localImage {
-          childImageSharp {
-            gatsbyImageData(
-              width: 200
-              placeholder: BLURRED
-              formats: [AUTO, WEBP, AVIF]
-            )
-          }
-        }
         locale {
           language
           genus

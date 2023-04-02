@@ -44,8 +44,8 @@
   }
 
   input {
-    border: rem(2) solid $color-neutral;
-    border-radius: rem(20);
+    border: none;
+    border-radius: rem(5);
     box-shadow: unset;
     color: $color-dark;
     display: block;
@@ -74,4 +74,10 @@
   li[class*='react-search-box-dropdown-list-item'] {
     color: $color-dark-tone;
   }
+}
+
+.inputIcon {
+  color: $color-neutral-light;
+  height: rem(20);
+  width: rem(20);
 }

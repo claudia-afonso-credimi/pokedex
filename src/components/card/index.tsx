@@ -11,10 +11,8 @@ type CardProps = {
 const Card: React.FC<CardProps> = ({ pokemon }) => {
   return (
     <Link className={style.card} to={`/${pokemon.id}`}>
-        <div className={style.imgContainer}>
-        {/* {imagehere} */}
-        </div>
         <h2 className={style.name}>{pokemon.name}</h2>
+        <div className={style.imgContainer}></div>
     </Link>
   )
 }

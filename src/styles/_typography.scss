@@ -23,12 +23,12 @@
 }
 
 %h3 {
-  font-size: rem(28);
+  font-size: rem(24);
   font-weight: 700;
   line-height: 1.5;
 
   @include mq(desktop) {
-    font-size: rem(30);
+    font-size: rem(28);
     font-weight: 700;
     line-height: 1.5;
   }

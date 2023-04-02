@@ -5,7 +5,7 @@ import { MdOutlineKeyboardArrowRight, MdOutlineKeyboardArrowLeft } from "react-i
 import Layout from '../components/layout'
 import Card from '../components/card'
 import { Locales, Pokemon, PokemonLocale } from '../types/types'
-import * as style from '../pages/style/pokemon.module.scss'
+import * as style from './style/all-pokemon.module.scss'
 
 type PokemonListProps = {
   data: {
@@ -44,25 +44,27 @@ const PokemonList: React.FC<PokemonListProps> = (props) => {
   return (
     <Layout full>
       <>
-        <h1 className={style.title}><Trans>Pokédex</Trans></h1>
-        <ul className={style.cardsGrid}>
-          {pokemonData.map((el: Pokemon, index: number) => {
-            return (
-              <li key={index}>
-                <Card pokemon={el} />
-              </li>
-            )}
-          )}
-        </ul>
         <div>
+          <h1 className={style.title}><Trans>Pokédex</Trans></h1>
+          <ul className={style.cardsGrid}>
+            {pokemonData.map((el: Pokemon, index: number) => {
+              return (
+                <li key={index}>
+                  <Card pokemon={el} />
+                </li>
+              )}
+            )}
+          </ul>
+        </div>
+        <div className={`${isLast ? style.lastPage : ''} ${style.pagination} ${isFirst ? style.firstPage : ''}`}>
           {!isFirst && (
-            <Link to={`/page/${prevPage}`} rel="prev">
+            <Link to={`/page/${prevPage}`} rel="prev" className={style.paginationLink}>
               <MdOutlineKeyboardArrowLeft />
               <Trans>Previous Page</Trans>
             </Link>
           )}
           {!isLast && (
-            <Link to={`/page/${nextPage}`} rel="next">
+            <Link to={`/page/${nextPage}`} rel="next" className={style.paginationLink}>
               <Trans>Next Page</Trans>
               <MdOutlineKeyboardArrowRight />
             </Link>
@@ -91,15 +93,6 @@ export const query = graphql`
       nodes {
         id
         imageUrl
-        localImage {
-          childImageSharp {
-            gatsbyImageData(
-              width: 200
-              placeholder: BLURRED
-              formats: [AUTO, WEBP, AVIF]
-            )
-          }
-        }
         locale {
           language
           genus

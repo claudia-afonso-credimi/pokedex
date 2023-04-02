@@ -2,6 +2,7 @@ import * as React from 'react'
 import "@formatjs/intl-pluralrules/polyfill"
 import { Link, useI18next } from 'gatsby-plugin-react-i18next';
 import { MdCatchingPokemon, MdOutlineKeyboardBackspace } from "react-icons/md"
+import { BiHome } from "react-icons/bi"
 import * as style from './layout.module.scss'
 
 type LayoutProps = {
@@ -18,7 +19,7 @@ const NavBar: React.FC = () => {
     <nav className={style.navBar}>
       {!isHomePage &&
         <Link to="/" className={style.navCta}>
-          <MdOutlineKeyboardBackspace size={24} />
+          <BiHome size={24} />
         </Link>
       }
       <ul className={style.list}>
@@ -45,7 +46,7 @@ const Layout: React.FC<LayoutProps> = ({ children, full }) => {
         <main className={`${style.main} ${full ? style.full : ''}`}>
           {children}
         </main>
-        {/* <MdCatchingPokemon className={style.containerImg}/> */}
+        <MdCatchingPokemon className={style.containerImg}/>
       </div>
     </div>
   )
