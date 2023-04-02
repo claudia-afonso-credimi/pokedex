@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { graphql, PageProps } from 'gatsby'
-import { Trans, useTranslation } from 'gatsby-plugin-react-i18next'
+import { Trans } from 'gatsby-plugin-react-i18next'
 import Layout from '../components/layout'
 import { PokemonPageProps, Pokemon, PokemonLocale } from '../types/types'
 import * as style from '../pages/style/pokemon.module.scss'
