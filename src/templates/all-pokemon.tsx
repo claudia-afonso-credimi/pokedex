@@ -16,7 +16,7 @@ const PokemonList: React.FC<PageProps<PokemonPageProps, PageContext>> = (props) 
   const userLanguage = props.data.locales.edges[0].node.language
   const pokemonData = props.data.allPokemon.nodes.map((pokemon: PokemonLocale) => {
     const filteredData = pokemon.locale.filter((el: Pokemon) => el.language === userLanguage)
-    return { ...filteredData[0], imageUrl: pokemon.imageUrl, id: pokemon.id }
+    return { ...filteredData[0], imageUrl: pokemon.imageUrl, id: pokemon.id, featuredImg: pokemon.featuredImg }
   })
 
   const { currentPage, numPages } = props.pageContext
@@ -42,7 +42,7 @@ const PokemonList: React.FC<PageProps<PokemonPageProps, PageContext>> = (props) 
             })}
           </ul>
         </div>
-        <div className={`${isLast ? style.lastPage : ''} ${style.pagination} ${isFirst ? style.firstPage : ''}`}>
+        <footer className={`${isLast ? style.lastPage : ''} ${style.pagination} ${isFirst ? style.firstPage : ''}`}>
           {!isFirst && (
             <Link to={`/page/${prevPage}`} rel='prev' className={style.paginationLink}>
               <MdOutlineKeyboardArrowLeft />
@@ -55,7 +55,7 @@ const PokemonList: React.FC<PageProps<PokemonPageProps, PageContext>> = (props) 
               <MdOutlineKeyboardArrowRight />
             </Link>
           )}
-        </div>
+        </footer>
       </>
     </Layout>
   )
@@ -76,6 +76,11 @@ export const query = graphql`
       nodes {
         id
         imageUrl
+        featuredImg {
+          childImageSharp {
+            gatsbyImageData(width: 200, placeholder: BLURRED)
+          }
+        }
         locale {
           language
           genus
@@ -90,7 +95,7 @@ export const query = graphql`
   }
 `
 
-export const Head = () => (
+export const Head = (): JSX.Element => (
   <title>
     <Trans>Pokédex</Trans>
   </title>

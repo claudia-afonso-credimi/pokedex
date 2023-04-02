@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { graphql, PageProps } from 'gatsby'
+import { GatsbyImage } from 'gatsby-plugin-image'
 import { Trans } from 'gatsby-plugin-react-i18next'
 import Layout from '../components/layout'
 import { PokemonPageProps, Pokemon, PokemonLocale } from '../types/types'
@@ -9,13 +10,15 @@ const PokemonPage: React.FC<PageProps<PokemonPageProps>> = (props) => {
   const userLanguage = props.data.locales.edges[0].node.language
   const pokemonData = props.data.allPokemon.nodes.map((pokemon: PokemonLocale) => {
     const filteredData = pokemon.locale.filter((el: Pokemon) => el.language === userLanguage)
-    return { ...filteredData[0], imageUrl: pokemon.imageUrl, id: pokemon.id }
+    return { ...filteredData[0], imageUrl: pokemon.imageUrl, id: pokemon.id, featuredImg: pokemon.featuredImg }
   })
 
   return (
     <Layout full>
       <div className={style.container}>
-        <div className={style.image}></div>
+        <div className={style.image}>
+          <GatsbyImage image={pokemonData[0].featuredImg.childImageSharp.gatsbyImageData} alt={pokemonData[0].name} />
+        </div>
         <h1 className={style.title}>{pokemonData[0].name}</h1>
         <div className={style.detailsContainer}>
           <div className={style.pokemonDetails}>
@@ -63,6 +66,11 @@ export const query = graphql`
       nodes {
         id
         imageUrl
+        featuredImg {
+          childImageSharp {
+            gatsbyImageData(width: 200, placeholder: BLURRED)
+          }
+        }
         locale {
           language
           genus

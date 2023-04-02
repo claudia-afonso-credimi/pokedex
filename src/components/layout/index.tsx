@@ -40,13 +40,13 @@ const NavBar: React.FC = () => {
 
 const Layout: React.FC<LayoutProps> = ({ children, full }) => {
   return (
-    <div className={`${style.container} ${full ? style.full : ''}`}>
+    <main className={`${style.container} ${full ? style.full : ''}`}>
       <div className={style.wrapper}>
         <NavBar />
         <main className={`${style.main} ${full ? style.full : ''}`}>{children}</main>
         <MdCatchingPokemon className={style.containerImg} />
       </div>
-    </div>
+    </main>
   )
 }
 

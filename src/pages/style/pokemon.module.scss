@@ -1,16 +1,12 @@
 .container {
   background-color: $color-dark-tone;
   border-radius: rem(5);
+  box-shadow: 0 0 20px 0 rgb($color-primary-light, 30%);
   box-sizing: border-box;
   margin: rem(100) auto $spacing-xl auto;
   max-width: rem(600);
   padding: rem(100) $spacing-xl $spacing-xl $spacing-xl;
   position: relative;
-
-  &:hover {
-    box-shadow: 0 0 20px 0 rgb($color-primary-light, 30%);
-    transition: all 200ms;
-  }
 }
 
 .title {
@@ -54,12 +50,8 @@
 }
 
 .image {
-  background-color: white;
-  border-radius: 50%;
-  height: 200px;
   left: 50%;
   position: absolute;
   top: -100px;
   transform: translateX(-50%);
-  width: 200px;
 }

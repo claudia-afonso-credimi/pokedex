@@ -9,12 +9,15 @@ export type Locales = {
 export type PokemonLocale = {
   id: string
   imageUrl: string
+  featuredImg: File
   locale: Pokemon[]
 }
 
 export type Pokemon = {
   id: string
   language: string
+  imageUrl: string
+  featuredImg: File
   genus: string
   name: string
   details: {

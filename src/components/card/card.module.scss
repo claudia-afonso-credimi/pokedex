@@ -21,8 +21,6 @@
 }
 
 .imgContainer {
-  background-color: $color-light;
-  border-radius: 50%;
-  height: 100px;
-  width: 100px;
+  height: rem(100);
+  width: rem(100);
 }
