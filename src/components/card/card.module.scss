@@ -1,12 +1,12 @@
 .card {
+  align-items: flex-end;
   background-color: $color-dark-tone;
   border-radius: rem(5);
-  padding: rem(20);
-  width: calc(100% - #{rem(40)});
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
+  padding: rem(20);
   text-decoration: none;
+  width: calc(100% - #{rem(40)});
 
   &:hover {
     box-shadow: 0 0 15px 0 rgb($color-primary-light, 30%);
@@ -23,9 +23,6 @@
 .imgContainer {
   background-color: $color-light;
   border-radius: 50%;
-  width: 100px;
   height: 100px;
-}
-
-.img {
+  width: 100px;
 }

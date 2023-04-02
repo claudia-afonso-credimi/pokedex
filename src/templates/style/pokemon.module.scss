@@ -1,11 +1,11 @@
 .container {
   background-color: $color-dark-tone;
-  box-sizing: border-box;
   border-radius: rem(5);
-  padding: rem(100) $spacing-xl $spacing-xl $spacing-xl;
-  position: relative;
+  box-sizing: border-box;
   margin: rem(100) auto $spacing-xl auto;
   max-width: rem(600);
+  padding: rem(100) $spacing-xl $spacing-xl $spacing-xl;
+  position: relative;
 
   &:hover {
     box-shadow: 0 0 20px 0 rgb($color-primary-light, 30%);
@@ -16,50 +16,50 @@
 .title {
   @extend %h1;
 
-  margin-bottom: $spacing-xl;
   color: $color-primary;
+  margin-bottom: $spacing-xl;
   text-align: center;
 }
 
 .detailsContainer {
+  align-items: center;
+  background-color: rgb($color-light, 0.03);
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  align-items: center;
-  background-color: rgb($color-light, 0.03);
   padding-top: $spacing-xl;
 }
 
 .pokemonDetails {
+  align-items: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
   margin-bottom: $spacing-md;
 }
 
 .details {
   @extend %p;
 
-  margin-bottom: $spacing-md;
   color: $color-light;
+  margin-bottom: $spacing-md;
   max-width: rem(500);
 }
 
 .detailsTitle {
   @extend %p;
 
+  color: $color-primary;
   font-weight: 700;
   margin-bottom: $spacing-xs;
-  color: $color-primary;
 }
 
 .image {
-  width: 200px;
-  height: 200px;
   background-color: white;
   border-radius: 50%;
+  height: 200px;
+  left: 50%;
   position: absolute;
   top: -100px;
-  left: 50%;
   transform: translateX(-50%);
+  width: 200px;
 }

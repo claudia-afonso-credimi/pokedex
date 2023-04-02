@@ -1,31 +1,31 @@
 .container {
   background-color: $color-dark;
   min-height: 100vh;
-  width: 100%;
   overflow: hidden;
+  width: 100%;
 
   &.full {
     height: 100%;
-    min-height: 100vh;
     justify-content: flex-start;
+    min-height: 100vh;
   }
 }
 
 .wrapper {
   display: flex;
-  height: 100%;
   flex-direction: column;
+  height: 100%;
   justify-content: space-between;
-  position: relative;
-  max-width: rem(1280);
   margin: 0 auto;
+  max-width: rem(1280);
+  position: relative;
   width: 100%;
-  z-index: 1;
+  z-index: $z-1;
 
   :not([class*='full']) & {
     height: 100vh;
-    min-height: 100vh;
     justify-content: unset;
+    min-height: 100vh;
   }
 
   [class*='full'] & {
@@ -47,23 +47,23 @@
   }
 
   &.full {
-    margin: 0;
-    max-width: none;
     flex: 1;
     justify-content: space-between;
+    margin: 0;
+    max-width: none;
   }
 }
 
 .containerImg {
-  width: 100%;
-  height: 100%;
   color: $color-light;
+  height: 100%;
+  left: -35%;
   opacity: 0.05;
   position: fixed;
-  left: -35%;
   top: -30%;
   transform: rotate(-30deg);
-  z-index: -1;
+  width: 100%;
+  z-index: $z-minus-1;
 }
 
 .navBar {
@@ -81,8 +81,8 @@
 
 .listItem {
   color: $color-light;
-  margin-left: $spacing-xs;
   font-size: rem(16);
+  margin-left: $spacing-xs;
 
   @include mq('desktop') {
     margin-left: $spacing-sm;

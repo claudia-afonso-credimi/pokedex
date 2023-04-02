@@ -15,8 +15,8 @@
   }
 
   &:focus-visible {
-    outline-color: $color-primary-light;
     box-shadow: 0 0 5px $color-primary-light;
+    outline-color: $color-primary-light;
   }
 }
 
@@ -24,13 +24,13 @@
   position: relative;
 
   .inputIcon {
-    position: absolute;
-    left: rem(16);
-    top: rem(12);
     bottom: 0;
     color: $color-neutral;
-    width: rem(16);
     height: rem(16);
+    left: rem(16);
+    position: absolute;
+    top: rem(12);
+    width: rem(16);
   }
 
   .input {

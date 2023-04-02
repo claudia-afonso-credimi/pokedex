@@ -1,6 +1,5 @@
-// @use 'mq';
+@import 'node_modules/sass-mq/mq';
 @import './reset';
-@import './mq';
 @import './px';
 @import './spacing';
 @import './z-index';

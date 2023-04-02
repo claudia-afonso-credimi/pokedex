@@ -1,26 +1,26 @@
 .title {
   @extend %h1;
 
-  margin-bottom: $spacing-sm;
   color: $color-primary;
+  margin-bottom: $spacing-sm;
 }
 
 .overTitle {
   @extend %small;
 
   color: $color-secondary;
-  position: relative;
   margin-bottom: $spacing-sm;
+  position: relative;
 
   &::after {
-    content: '';
-    width: 10%;
-    position: absolute;
-    bottom: -8px;
     background-color: $color-accent;
-    right: 0;
+    bottom: -8px;
+    content: '';
     height: 2px;
     left: 0;
+    position: absolute;
+    right: 0;
+    width: 10%;
   }
 }
 
@@ -58,17 +58,17 @@
     }
 
     &:focus-visible {
-      outline-color: $color-primary-light;
       box-shadow: 0 0 5px $color-primary-light;
+      outline-color: $color-primary-light;
     }
   }
 
   div[class*='react-search-box-dropdown'] {
-    overflow: scroll;
     max-height: rem(180);
+    overflow: scroll;
     position: absolute;
-    width: 100%;
     top: rem(35);
+    width: 100%;
   }
 
   li[class*='react-search-box-dropdown-list-item'] {
