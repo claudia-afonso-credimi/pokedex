@@ -5,7 +5,7 @@ import { Link, Trans, useTranslation } from 'gatsby-plugin-react-i18next'
 import { BiSearchAlt } from 'react-icons/bi'
 import { PokemonLocale, Pokemon, PokemonPageProps } from '../types/types'
 import Layout from '../components/layout'
-import style from './style/index.module.scss'
+import * as style from './style/index.module.scss'
 
 type PokemonSearchBox = {
   key: string
@@ -14,7 +14,7 @@ type PokemonSearchBox = {
 
 const HomePage: React.FC<PageProps<PokemonPageProps>> = ({ data }) => {
   const { t } = useTranslation()
-  const userLanguage: string = data.allLocale.edges[0].node.language
+  const userLanguage: string = data.locales.edges[0].node.language
   const pokemonData: PokemonSearchBox = data.allPokemon.nodes.map((pokemon: PokemonLocale) => {
     const filteredData = pokemon.locale.filter((el: Pokemon) => el.language === userLanguage)
     return { key: pokemon.id, value: filteredData[0].name }
@@ -52,9 +52,11 @@ const HomePage: React.FC<PageProps<PokemonPageProps>> = ({ data }) => {
 
 export const query = graphql`
   query ($language: String!) {
-    allLocale(filter: { language: { eq: $language } }) {
+    locales: allLocale(filter: { language: { eq: $language } }) {
       edges {
         node {
+          ns
+          data
           language
         }
       }

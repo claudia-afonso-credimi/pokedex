@@ -32,5 +32,5 @@ export type PokemonPageProps = {
   allPokemon: {
     nodes: PokemonLocale[]
   }
-  allLocale: Locales
+  locales: Locales
 }

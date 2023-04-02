@@ -13,7 +13,7 @@ type PageContext = {
 }
 
 const PokemonList: React.FC<PageProps<PokemonPageProps, PageContext>> = (props) => {
-  const userLanguage = props.data.allLocale.edges[0].node.language
+  const userLanguage = props.data.locales.edges[0].node.language
   const pokemonData = props.data.allPokemon.nodes.map((pokemon: PokemonLocale) => {
     const filteredData = pokemon.locale.filter((el: Pokemon) => el.language === userLanguage)
     return { ...filteredData[0], imageUrl: pokemon.imageUrl, id: pokemon.id }
@@ -63,7 +63,7 @@ const PokemonList: React.FC<PageProps<PokemonPageProps, PageContext>> = (props) 
 
 export const query = graphql`
   query ($language: String!, $skip: Int!, $limit: Int!) {
-    allLocale(filter: { language: { eq: $language } }) {
+    locales: allLocale(filter: { language: { eq: $language } }) {
       edges {
         node {
           ns
