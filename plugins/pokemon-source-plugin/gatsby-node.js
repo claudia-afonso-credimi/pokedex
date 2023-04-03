@@ -1,5 +1,10 @@
-const axios = require('axios')
 const { createRemoteFileNode } = require('gatsby-source-filesystem')
+const axios = require('axios')
+
+/**
+ * Adds types to schema to avoid GraphQL errors
+ * Adds File type to download fetched images
+ */
 
 exports.createSchemaCustomization = ({ actions }) => {
   const { createTypes } = actions
@@ -27,17 +32,37 @@ exports.createSchemaCustomization = ({ actions }) => {
   createTypes(typeDefs)
 }
 
+/**
+ * This API is called during the Gatsby bootstrap sequence to create for GraphQL
+ * Fetch and create nodes for at least 151 Pokemons
+ */
+
 exports.sourceNodes = async ({ actions: { createNode }, createContentDigest }) => {
   const urlSpecies = 'https://pokeapi.co/api/v2/pokemon-species'
   const urlPokemon = 'https://pokeapi.co/api/v2/pokemon'
+
+  /**
+   * Fetch pokemon species by id - Returns promise
+   * @param {id} id number
+   */
 
   const fetchPokemonData = async (i) => {
     return axios.get(`${urlSpecies}/${i}`)
   }
 
+  /**
+   * Fetch pokemon by id - Returns promise
+   * @param {id} id number
+   */
+
   const fetchPokemonImage = async (i) => {
     return axios.get(`${urlPokemon}/${i}`)
   }
+
+  /**
+   * Returns pokemon genus on selected languages IT/ES/EN
+   * @param {genera} pokemon.genera object
+   */
 
   const getPokemonGenus = (genera) => {
     let results = genera
@@ -55,6 +80,11 @@ exports.sourceNodes = async ({ actions: { createNode }, createContentDigest }) =
 
     return results
   }
+
+  /**
+   * Returns pokemon description for X and Y version on selected languages IT/ES/EN
+   * @param {descriptions} pokemon.flavor_text_entries object
+   */
 
   const getPokemonDescriptionAndVersion = (descriptions) => {
     const descriptionsX = [...descriptions]
@@ -97,6 +127,11 @@ exports.sourceNodes = async ({ actions: { createNode }, createContentDigest }) =
     return { x: resultsX, y: resultsY }
   }
 
+  /**
+   * Returns pokemon name on selected languages IT/ES/EN
+   * @param {names} pokemon object
+   */
+
   const getPokemonName = (names) => {
     let results = names
       .filter((lang) => lang.language.name === 'it' || lang.language.name === 'es' || lang.language.name === 'en')
@@ -113,6 +148,11 @@ exports.sourceNodes = async ({ actions: { createNode }, createContentDigest }) =
 
     return results
   }
+
+  /**
+   * Returns pokemon structured data object
+   * @param {pokemon} pokemon object
+   */
 
   const transformData = (pokemon) => {
     const name = getPokemonName(pokemon.names)

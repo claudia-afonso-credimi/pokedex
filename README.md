@@ -4,46 +4,55 @@
   </a>
 </p>
 <h1 align="center">
-  Gatsby Minimal TypeScript Starter
+  Pokédex
 </h1>
 
-## 🚀 Quick start
+## ⚙️ Quick start
 
-1.  **Create a Gatsby site.**
+Pokédex static site built with:
 
-    Use the Gatsby CLI to create a new site, specifying the minimal TypeScript starter.
+- Gatsby / React
+- axios
+- GraphQL
+- Typescript
+- Sass
+- Jest
+- i18next and gatsby plugin for intl
+
+Shows a list of Pokemons (x and y)
+Uses https://pokeapi.co/ to fetch the data
+
+https://pokeapi.co/api/v2/pokemon-species/ to fetch pokemons
+https://pokeapi.co/api/v2/pokemon/ to fetch images
+
+1.  **Requirements.**
+
+node 18.4.0
+
+1.  **Install dependencies.**
+
+    Run:
 
     ```shell
-    # create a new Gatsby site using the minimal TypeScript starter
-    npm init gatsby -- -ts
+    npm install
     ```
 
-2.  **Start developing.**
-
-    Navigate into your new site’s directory and start it up.
+2.  **Start project**
 
     ```shell
-    cd my-gatsby-site/
-    npm run develop
+    npm run start
     ```
 
-3.  **Open the code and start customizing!**
+3.  **Run tests**
 
-    Your site is now running at http://localhost:8000!
+    ```shell
+    npm run test
+    ```
 
-    Edit `src/pages/index.tsx` to see your site update in real-time!
+4.  **Build**
 
-4.  **Learn more**
+    ```shell
+    npm run build
+    ```
 
-    - [Documentation](https://www.gatsbyjs.com/docs/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
-    - [Tutorials](https://www.gatsbyjs.com/tutorial/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
-    - [Guides](https://www.gatsbyjs.com/tutorial/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
-    - [API Reference](https://www.gatsbyjs.com/docs/api-reference/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
-    - [Plugin Library](https://www.gatsbyjs.com/plugins?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
-    - [Cheat Sheet](https://www.gatsbyjs.com/docs/cheat-sheet/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
-
-## 🚀 Quick start (Netlify)
-
-Deploy this starter with one click on [Netlify](https://app.netlify.com/signup):
-
-[<img src="https://www.netlify.com/img/deploy/button.svg" alt="Deploy to Netlify" />](https://app.netlify.com/start/deploy?repository=https://github.com/gatsbyjs/gatsby-starter-minimal-ts)
+5.  ## 🚀 Deploy (Netlify)

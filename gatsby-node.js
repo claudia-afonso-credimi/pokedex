@@ -1,3 +1,9 @@
+/**
+ * This API is called to create pages from the fetched pokemons
+ * Template: pokemon - will create a page for every pokemon
+ * Template: all-pokemon will create a list of pages with pagination
+ */
+
 exports.createPages = ({ actions, graphql }) => {
   const createPage = actions.createPage
   const pages = graphql(`

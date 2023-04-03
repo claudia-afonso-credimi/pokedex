@@ -1,5 +1,10 @@
 import { PaginationData, PageContext } from '../types/types'
 
+/**
+ * Returns an object with pagination values, like prevPage and nextPage pages
+ * @param {data} Gatsby page object with page context information
+ */
+
 export const usePagination = (data: PageContext): PaginationData => {
   const { currentPage, numPages } = data
   const isFirst = currentPage === 1

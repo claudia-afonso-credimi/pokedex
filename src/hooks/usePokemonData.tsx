@@ -1,5 +1,10 @@
 import { Pokemon, PokemonLocale, PokemonSearchBox } from '../types/types'
 
+/**
+ * Returns an object with pokemon filtered data by language
+ * @param {lang, pokemon} lang user selected language, pokemon object
+ */
+
 export const usePokemonDataLanguage = (lang: string, pokemon: PokemonLocale[]): Pokemon[] => {
   const pokemonData: Pokemon[] = pokemon.map((pokemon: PokemonLocale) => {
     const filteredData = pokemon.locale.filter((el: Pokemon) => el.language === lang)
@@ -8,6 +13,11 @@ export const usePokemonDataLanguage = (lang: string, pokemon: PokemonLocale[]): 
 
   return pokemonData
 }
+
+/**
+ * Returns an object with pokemon structured data for search box
+ * @param {lang, pokemon} lang user selected language, pokemon object
+ */
 
 export const usePokemonDataSearch = (lang: string, pokemon: PokemonLocale[]): PokemonSearchBox[] => {
   const pokemonData: PokemonSearchBox[] = pokemon.map((pokemon: PokemonLocale) => {

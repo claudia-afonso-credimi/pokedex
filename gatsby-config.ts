@@ -5,7 +5,8 @@ const config: GatsbyConfig = {
     title: `Pokédex challenge`,
     siteUrl: `https://www.yourdomain.tld`,
     description: `Pokédex - Web team take-home challenge`,
-    image: `/src/images/pokeball.png`
+    image: `/src/images/pokeball.png`,
+    author: 'Claudia Afonso'
   },
   // More easily incorporate content into your pages through automatic TypeScript type generation and better GraphQL IntelliSense.
   // If you use VSCode you can also use the GraphQL plugin
