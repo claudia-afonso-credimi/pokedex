@@ -26,9 +26,7 @@ Shows a list of Pokemons (x and y) and uses https://pokeapi.co/ as the data sour
 
 ## Requirements
 
-    ```shell
     node 18.4.0
-    ```
 
 1.  **Install dependencies.**
 
