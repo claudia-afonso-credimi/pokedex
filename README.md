@@ -27,7 +27,9 @@ https://pokeapi.co/api/v2/pokemon/ to fetch images
 
 1.  **Requirements.**
 
-node 18.4.0
+    ```shell
+    node 18.4.0
+    ```
 
 1.  **Install dependencies.**
 
@@ -37,22 +39,22 @@ node 18.4.0
     npm install
     ```
 
-2.  **Start project**
+1.  **Start project**
 
     ```shell
     npm run start
     ```
 
-3.  **Run tests**
+1.  **Run tests**
 
     ```shell
     npm run test
     ```
 
-4.  **Build**
+1.  **Build**
 
     ```shell
     npm run build
     ```
 
-5.  ## 🚀 Deploy (Netlify)
+1.  🚀 Deploy (Netlify)
