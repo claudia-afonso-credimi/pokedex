@@ -1,7 +1,7 @@
 .container {
   background-color: $color-dark-tone;
   border-radius: rem(5);
-  box-shadow: 0 0 20px 0 rgb($color-primary-light, 30%);
+  box-shadow: 0 0 rem(10) 0 rgb($color-black, 30%);
   box-sizing: border-box;
   margin: rem(100) auto $spacing-xl auto;
   max-width: rem(600);
@@ -23,7 +23,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  padding-top: $spacing-xl;
+  padding: $spacing-xl $spacing-xl 0 $spacing-xl;
 }
 
 .pokemonDetails {

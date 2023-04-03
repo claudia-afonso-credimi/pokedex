@@ -4,26 +4,17 @@ import { Link, Trans } from 'gatsby-plugin-react-i18next'
 import { MdOutlineKeyboardArrowRight, MdOutlineKeyboardArrowLeft } from 'react-icons/md'
 import Layout from '../components/layout'
 import Card from '../components/card'
-import { PokemonPageProps, Pokemon, PokemonLocale } from '../types/types'
+import { PokemonPageProps, Pokemon, PokemonLocale, PageContext } from '../types/types'
+import { usePokemonDataLanguage } from '../hooks/usePokemonData'
+import { usePagination } from '../hooks/usePagination'
 import * as style from '../pages/style/all-pokemon.module.scss'
 
-type PageContext = {
-  currentPage: number
-  numPages: number
-}
-
 const PokemonList: React.FC<PageProps<PokemonPageProps, PageContext>> = (props) => {
-  const userLanguage = props.data.locales.edges[0].node.language
-  const pokemonData = props.data.allPokemon.nodes.map((pokemon: PokemonLocale) => {
-    const filteredData = pokemon.locale.filter((el: Pokemon) => el.language === userLanguage)
-    return { ...filteredData[0], imageUrl: pokemon.imageUrl, id: pokemon.id, featuredImg: pokemon.featuredImg }
-  })
-
-  const { currentPage, numPages } = props.pageContext
-  const isFirst = currentPage === 1
-  const isLast = currentPage === numPages
-  const prevPage = currentPage - 1 === 1 ? '' : (currentPage - 1).toString()
-  const nextPage = (currentPage + 1).toString()
+  const userLanguage: string = props.data.locales.edges[0].node.language
+  const pokemonList: PokemonLocale[] = props.data.allPokemon.nodes
+  const pokemonData = usePokemonDataLanguage(userLanguage, pokemonList)
+  const pageContext: PageContext = props.pageContext
+  const { isFirst, isLast, prevPage, nextPage } = usePagination(pageContext)
 
   return (
     <Layout full>

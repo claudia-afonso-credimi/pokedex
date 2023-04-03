@@ -1,3 +1,5 @@
+import { IGatsbyImageData } from 'gatsby-plugin-image'
+
 export type Locales = {
   edges: {
     node: {
@@ -9,7 +11,11 @@ export type Locales = {
 export type PokemonLocale = {
   id: string
   imageUrl: string
-  featuredImg: File
+  featuredImg: {
+    childImageSharp: {
+      gatsbyImageData: IGatsbyImageData
+    }
+  }
   locale: Pokemon[]
 }
 
@@ -17,7 +23,11 @@ export type Pokemon = {
   id: string
   language: string
   imageUrl: string
-  featuredImg: File
+  featuredImg: {
+    childImageSharp: {
+      gatsbyImageData: IGatsbyImageData
+    }
+  }
   genus: string
   name: string
   details: {
@@ -26,14 +36,26 @@ export type Pokemon = {
   }
 }
 
-export type PokemonImages = {
-  id: string
-  imageUrl: string
-}
-
 export type PokemonPageProps = {
   allPokemon: {
     nodes: PokemonLocale[]
   }
   locales: Locales
+}
+
+export type PokemonSearchBox = {
+  key: string
+  value: string
+}
+
+export type PageContext = {
+  currentPage: number
+  numPages: number
+}
+
+export type PaginationData = {
+  isFirst: boolean
+  isLast: boolean
+  prevPage: string
+  nextPage: string
 }

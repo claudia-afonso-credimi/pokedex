@@ -9,11 +9,13 @@ type CardProps = {
 }
 
 const Card: React.FC<CardProps> = ({ pokemon }) => {
+  const image = pokemon.featuredImg.childImageSharp.gatsbyImageData
+
   return (
     <Link className={style.card} to={`/${pokemon.id}`}>
       <h2 className={style.name}>{pokemon.name}</h2>
       <div className={style.imgContainer}>
-        <GatsbyImage image={pokemon.featuredImg.childImageSharp.gatsbyImageData} alt={pokemon.name} />
+        <GatsbyImage image={image} alt={pokemon.name} />
       </div>
     </Link>
   )

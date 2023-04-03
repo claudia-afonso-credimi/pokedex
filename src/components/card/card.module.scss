@@ -2,6 +2,7 @@
   align-items: flex-end;
   background-color: $color-dark-tone;
   border-radius: rem(5);
+  box-shadow: 0 0 rem(10) 0 rgb($color-black, 30%);
   display: flex;
   justify-content: space-between;
   padding: rem(20);
@@ -9,7 +10,7 @@
   width: calc(100% - #{rem(40)});
 
   &:hover {
-    box-shadow: 0 0 15px 0 rgb($color-primary-light, 30%);
+    box-shadow: 0 0 rem(15) 0 rgb($color-primary-light, 30%);
     transition: all 200ms;
   }
 }

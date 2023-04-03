@@ -17,10 +17,6 @@ exports.createSchemaCustomization = ({ actions }) => {
       details: Details
     }
 
-    type PokemonImages implements Node {
-      featuredImg: File @link(from: "fields.localFile")
-    }
-
     type Pokemon implements Node {
       id: String!
       imageUrl: String!
