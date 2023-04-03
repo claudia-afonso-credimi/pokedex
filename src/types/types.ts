@@ -1,3 +1,4 @@
+import { PageProps } from 'gatsby'
 import { IGatsbyImageData } from 'gatsby-plugin-image'
 
 export type Locales = {
@@ -34,6 +35,10 @@ export type Pokemon = {
     x: string
     y: string
   }
+}
+
+export type PokemonDataPageProps = {
+  data: PokemonPageProps
 }
 
 export type PokemonPageProps = {

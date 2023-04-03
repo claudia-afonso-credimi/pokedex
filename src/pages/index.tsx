@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { graphql, PageProps } from 'gatsby'
+import { graphql } from 'gatsby'
 import ReactSearchBox from 'react-search-box'
 import { Link, Trans } from 'gatsby-plugin-react-i18next'
 import { BiSearchAlt } from 'react-icons/bi'
@@ -8,7 +8,7 @@ import Layout from '../components/layout'
 import { usePokemonDataSearch } from '../hooks/usePokemonData'
 import * as style from './style/index.module.scss'
 
-const HomePage: React.FC<PageProps<PokemonPageProps>> = ({ data }) => {
+const HomePage: React.FC<PokemonPageProps> = ({ data }) => {
   const userLanguage: string = data.locales.edges[0].node.language
   const pokemonList: PokemonLocale[] = data.allPokemon.nodes
   const pokemonData: PokemonSearchBox[] = usePokemonDataSearch(userLanguage, pokemonList)

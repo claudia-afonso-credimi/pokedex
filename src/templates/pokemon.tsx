@@ -1,19 +1,15 @@
 import * as React from 'react'
-import { graphql, PageProps } from 'gatsby'
+import { graphql } from 'gatsby'
 import { GatsbyImage } from 'gatsby-plugin-image'
 import { Trans } from 'gatsby-plugin-react-i18next'
 import Layout from '../components/layout'
-import { PokemonPageProps, PokemonLocale } from '../types/types'
+import { PokemonDataPageProps, PokemonLocale } from '../types/types'
 import { usePokemonDataLanguage } from '../hooks/usePokemonData'
 import * as style from '../pages/style/pokemon.module.scss'
 
-type PokemonPage = {
-  pageData: PageProps<PokemonPageProps>
-}
-
-const PokemonPage: React.FC<PokemonPage> = ({ pageData }) => {
-  const userLanguage: string = pageData.data.locales.edges[0].node?.language || ''
-  const pokemonList: PokemonLocale[] = pageData.data.allPokemon.nodes || []
+const PokemonPage: React.FC<PokemonDataPageProps> = ({ data }) => {
+  const userLanguage: string = data.locales.edges[0].node?.language || ''
+  const pokemonList: PokemonLocale[] = data.allPokemon.nodes || []
   const pokemonData = usePokemonDataLanguage(userLanguage, pokemonList)
 
   return (

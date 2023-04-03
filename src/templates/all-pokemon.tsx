@@ -10,8 +10,9 @@ import { usePagination } from '../hooks/usePagination'
 import * as style from '../pages/style/all-pokemon.module.scss'
 
 const PokemonList: React.FC<PageProps<PokemonPageProps, PageContext>> = (props) => {
-  const userLanguage: string = props.data.locales.edges[0].node.language
-  const pokemonList: PokemonLocale[] = props.data.allPokemon.nodes
+  const pokemons = props.data
+  const userLanguage: string = pokemons.locales.edges[0].node.language
+  const pokemonList: PokemonLocale[] = pokemons.allPokemon.nodes
   const pokemonData = usePokemonDataLanguage(userLanguage, pokemonList)
   const pageContext: PageContext = props.pageContext
   const { isFirst, isLast, prevPage, nextPage } = usePagination(pageContext)
