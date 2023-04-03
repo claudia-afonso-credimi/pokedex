@@ -7,9 +7,13 @@ import { PokemonPageProps, PokemonLocale } from '../types/types'
 import { usePokemonDataLanguage } from '../hooks/usePokemonData'
 import * as style from '../pages/style/pokemon.module.scss'
 
-const PokemonPage: React.FC<PageProps<PokemonPageProps>> = (props) => {
-  const userLanguage: string = props.data.locales.edges[0].node.language
-  const pokemonList: PokemonLocale[] = props.data.allPokemon.nodes
+type PokemonPage = {
+  pageData: PageProps<PokemonPageProps>
+}
+
+const PokemonPage: React.FC<PokemonPage> = ({ pageData }) => {
+  const userLanguage: string = pageData.data.locales.edges[0].node?.language || ''
+  const pokemonList: PokemonLocale[] = pageData.data.allPokemon.nodes || []
   const pokemonData = usePokemonDataLanguage(userLanguage, pokemonList)
 
   return (
@@ -18,7 +22,9 @@ const PokemonPage: React.FC<PageProps<PokemonPageProps>> = (props) => {
         <div className={style.image}>
           <GatsbyImage image={pokemonData[0].featuredImg.childImageSharp.gatsbyImageData} alt={pokemonData[0].name} />
         </div>
-        <h1 className={style.title}>{pokemonData[0].name}</h1>
+        <h1 data-testid='pokemon-name' className={style.title}>
+          {pokemonData[0].name}
+        </h1>
         <div className={style.detailsContainer}>
           <div className={style.pokemonDetails}>
             <p className={style.detailsTitle}>
