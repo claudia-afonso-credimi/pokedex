@@ -19,13 +19,12 @@ Pokédex static site built with:
 - Jest
 - i18next and gatsby plugin for intl
 
-Shows a list of Pokemons (x and y)
-Uses https://pokeapi.co/ to fetch the data
+Shows a list of Pokemons (x and y) and uses https://pokeapi.co/ as the data source.
 
-https://pokeapi.co/api/v2/pokemon-species/ to fetch pokemons
-https://pokeapi.co/api/v2/pokemon/ to fetch images
+- https://pokeapi.co/api/v2/pokemon-species/ to fetch pokemons
+- https://pokeapi.co/api/v2/pokemon/ to fetch images
 
-1.  **Requirements.**
+## Requirements
 
     ```shell
     node 18.4.0
@@ -39,22 +38,20 @@ https://pokeapi.co/api/v2/pokemon/ to fetch images
     npm install
     ```
 
-1.  **Start project**
+2.  **Start project**
 
     ```shell
     npm run start
     ```
 
-1.  **Run tests**
+3.  **Run tests**
 
     ```shell
     npm run test
     ```
 
-1.  **Build**
+4.  **Build**
 
     ```shell
     npm run build
     ```
-
-1.  🚀 Deploy (Netlify)
